@@ -1,19 +1,29 @@
-<body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Info — Yuan Liu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-  <!-- 顶部 home -->
+<body class="page-info">
+
+  <!-- top center "home" -->
   <nav class="top-nav">
     <a href="index.html">home</a>
   </nav>
 
   <main class="info-layout">
-
     <section class="info-text">
-      <p><strong>Yuan Liu</strong><br>
-      (b. 10 Oct, 1999)</p>
+      <p class="info-title">
+        <strong>Yuan Liu</strong><br>
+        <span class="muted">(b. 10 Oct, 1999)</span>
+      </p>
 
       <p>
-        lyzqzs@gmail.com<br>
-        +1 (661) 373 8544<br>
+        <a href="mailto:lyzqzs@gmail.com">lyzqzs@gmail.com</a><br>
+        <a href="tel:+16613738544">+1 (661) 373 8544</a><br>
         @lyzqzs
       </p>
 
@@ -30,9 +40,10 @@
     </section>
 
     <figure class="info-image">
-      <img src="images/portrait.jpg" alt="Portrait of Yuan Liu">
+      <!-- ✅ 把这里的路径换成你 repo 里图片的真实路径 -->
+      <img src="assets/info.jpg" alt="Yuan Liu portrait">
     </figure>
-
   </main>
 
 </body>
+</html>
