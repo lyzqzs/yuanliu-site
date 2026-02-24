@@ -235,3 +235,79 @@ body {
 .info-image img {
   width: 300px;
 }
+/* =========================
+   Quinn-like minimal system
+   ========================= */
+
+:root{
+  --text:#111;
+  --muted: rgba(0,0,0,0.55);
+}
+
+/* base */
+body{
+  margin:0;
+  color:var(--text);
+  font-size:13px;
+  line-height:1.5;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* top centered home */
+.top-nav{
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* info layout */
+.page-info .info-layout{
+  display:flex;
+  gap:120px;
+  align-items:flex-start;
+  margin: 110px 90px 120px;
+}
+
+.page-info .info-text{
+  max-width: 280px;
+}
+
+.page-info .info-title{
+  margin-top:0;
+}
+
+.page-info .muted{
+  color: var(--muted);
+}
+
+.page-info .info-image{
+  margin:0;
+}
+
+.page-info .info-image img{
+  width: 320px;   /* 想更小：280px */
+  height: auto;
+  display:block;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .page-info .info-layout{
+    flex-direction:column;
+    gap:24px;
+    margin: 90px 24px 90px;
+  }
+  .page-info .info-image img{
+    width: min(360px, 100%);
+  }
+}
