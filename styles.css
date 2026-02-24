@@ -195,3 +195,43 @@ a:hover{ text-decoration:underline; }
   .info-grid{ grid-template-columns: 1fr; gap:22px; }
   .info-right{ justify-self:start; }
 }
+body {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.top-nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.info-layout {
+  display: flex;
+  gap: 120px;
+  margin: 120px 80px;
+  align-items: flex-start;
+}
+
+.info-text {
+  max-width: 280px;
+}
+
+.info-text p {
+  margin-bottom: 20px;
+}
+
+.info-image img {
+  width: 360px;
+  height: auto;
+}
+
+.info-image img {
+  width: 300px;
+}
