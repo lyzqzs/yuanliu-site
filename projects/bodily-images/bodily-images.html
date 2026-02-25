@@ -4,28 +4,76 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bodily Images — Yuan Liu</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../../styles.css" />
 </head>
-<body>
-  <main class="container">
-    <div class="header">
-      <a href="../index.html">Yuan Liu</a>
-      <nav class="nav">
-        <a href="../projects.html">Projects</a>
-        <a href="../info.html">Info</a>
-      </nav>
+
+<body class="page-work">
+
+  <!-- top center "home" -->
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
+
+  <main class="work-wrap">
+
+    <!-- one-image stage (click to next) -->
+    <figure class="work-figure">
+      <img
+        id="workImage"
+        src="bodily-01.JPG"
+        alt="Bodily Images documentation"
+        loading="eager"
+      />
+    </figure>
+
+    <!-- caption under image -->
+    <div class="work-caption">
+      <div class="work-title">Bodily Images</div>
+      <div class="work-meta">
+        <!-- 这里按你实际信息改 -->
+        2024–ongoing<br/>
+        California Institute of the Arts
+      </div>
     </div>
 
-    <h1 class="project-title">Bodily Images</h1>
-    <p class="meta">2024–ongoing · Photography / Research-led</p>
-
-    <p class="text">(Short working text.)</p>
-
-    <div class="section-title">Images</div>
-    <div class="gallery">
-      <div class="ph">Image 01</div>
-      <div class="ph">Image 02</div>
-    </div>
   </main>
+
+  <script>
+    // ✅ 注意：文件名要和 GitHub 里一模一样（大小写也一样）
+    // 你之后把图片传到这个文件夹里，把数组改成你的真实文件名即可
+    const images = [
+      "bodily-01.JPG",
+      "bodily-02.JPG",
+      "bodily-03.JPG",
+      "bodily-04.JPG",
+      "bodily-05.JPG",
+      "bodily-06.JPG",
+      "bodily-07.JPG",
+      "bodily-08.JPG",
+      "bodily-09.JPG",
+      "bodily-10.JPG",
+      "bodily-11.JPG",
+      "bodily-12.JPG"
+    ];
+
+    let idx = 0;
+    const imgEl = document.getElementById("workImage");
+
+    function show(i){
+      idx = (i + images.length) % images.length;
+      imgEl.src = images[idx];
+    }
+
+    // click image -> next
+    imgEl.style.cursor = "pointer";
+    imgEl.addEventListener("click", () => show(idx + 1));
+
+    // optional: keyboard arrows
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(idx + 1);
+      if (e.key === "ArrowLeft") show(idx - 1);
+    });
+  </script>
+
 </body>
 </html>
