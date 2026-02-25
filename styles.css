@@ -357,3 +357,44 @@ a:hover{ text-decoration:underline; }
   height: auto;         /* 等比例 */
   display: block;
 }
+/* =========================
+   Single-work page (Boxman / Bodily Images)
+   ========================= */
+
+.page-work .work-wrap{
+  min-height: 100vh;
+  padding: 96px 20px 80px;   /* 给顶部 home 留空间 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-work .work-figure{
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page-work .work-figure img{
+  display: block;
+  width: auto;               /* 保持等比 */
+  height: auto;              /* 保持等比 */
+  max-width: min(780px, 86vw); /* 关键：别撑满 */
+  max-height: 70vh;          /* 关键：别太高 */
+}
+
+.page-work .work-caption{
+  margin-top: 14px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.page-work .work-title{
+  font-style: italic;        /* 像 Quinn 那种感觉 */
+}
+
+.page-work .work-meta{
+  color: rgba(0,0,0,0.65);
+}
