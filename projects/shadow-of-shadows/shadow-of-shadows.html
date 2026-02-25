@@ -2,29 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shadow of Shadows — Yuan Liu</title>
-  <link rel="stylesheet" href="../styles.css" />
+
+  <!-- 全站样式 -->
+  <link rel="stylesheet" href="../../styles.css" />
+
+  <style>
+    .project-wrap {
+      max-width: 900px;
+      margin: 120px auto 160px;
+      text-align: center;
+    }
+
+    .project-image {
+      max-width: 100%;
+      max-height: 70vh;
+      cursor: pointer;
+    }
+
+    .project-meta {
+      margin-top: 24px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .project-meta em {
+      font-style: italic;
+    }
+  </style>
 </head>
+
 <body>
-  <main class="container">
-    <div class="header">
-      <a href="../index.html">Yuan Liu</a>
-      <nav class="nav">
-        <a href="../projects.html">Projects</a>
-        <a href="../info.html">Info</a>
-      </nav>
-    </div>
 
-    <h1 class="project-title">Shadow of Shadows</h1>
-    <p class="meta">(Year) · (Medium)</p>
+  <!-- 顶部 home -->
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
 
-    <p class="text">(Short working text.)</p>
+  <main class="project-wrap">
+    <img
+      id="projectImage"
+      class="project-image"
+      src="shadow-01.JPG"
+      alt="Shadow of Shadows"
+    />
 
-    <div class="section-title">Images</div>
-    <div class="gallery">
-      <div class="ph">Image 01</div>
+    <div class="project-meta">
+      <em>Wet Dream (潮湿梦境)</em><br />
+      Shenzhen, 2024
     </div>
   </main>
+
+  <script>
+    const images = [
+      "shadow-01.JPG",
+      "shadow-02.JPG",
+      "shadow-03.JPG",
+      "shadow-04.JPG",
+      "shadow-05.JPG",
+      "shadow-06.JPG",
+      "shadow-07.JPG"
+    ];
+
+    let index = 0;
+    const img = document.getElementById("projectImage");
+
+    img.addEventListener("click", () => {
+      index = (index + 1) % images.length;
+      img.src = images[index];
+    });
+  </script>
+
 </body>
 </html>
