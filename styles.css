@@ -177,8 +177,9 @@ a:hover{ text-decoration:underline; }
    ========================= */
 .page-projects .projects-wrap,
 .page-archive .projects-wrap{
-  margin: 120px 120px;
-  max-width: 520px;
+  width: 100%;
+  margin: 0;                 /* 不要把 main 固定在左侧 */
+  padding-top: 120px;        /* 给 home 留空间 + 统一顶部距离 */
 }
 
 .page-projects .projects-group,
