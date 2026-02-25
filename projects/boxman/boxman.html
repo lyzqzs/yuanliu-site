@@ -2,44 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>There Was a Box Man — Yuan Liu</title>
-
-  <!-- main site styles -->
   <link rel="stylesheet" href="../../styles.css" />
-
-  <style>
-    /* 页面主体 */
-    .boxman-page{
-      max-width: 900px;
-      margin: 140px auto 120px;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    /* 图片区域 */
-    .image-wrap{
-      cursor: pointer;
-    }
-
-    .image-wrap img{
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 18px;
-    }
-
-    /* 图片下方信息（仿 Quinn） */
-    .work-info{
-      font-size: 13px;
-      line-height: 1.5;
-      color: #111;
-    }
-
-    .work-info em{
-      font-style: italic;
-    }
-  </style>
 </head>
 
 <body>
@@ -49,20 +14,22 @@
     <a href="../../index.html">home</a>
   </nav>
 
-  <main class="boxman-page">
+  <main class="boxman-gallery">
+    <div class="boxman-frame">
 
-    <!-- image (click to advance) -->
-    <div class="image-wrap" id="imageWrap">
-      <img id="boxmanImage" src="boxman-01.JPG" alt="There Was a Box Man">
+      <img
+        id="boxman-image"
+        src="boxman-01.JPG"
+        alt="There Was a Box Man"
+      />
+
+      <div class="small" style="margin-top:14px;">
+        <em>There Was a Box Man</em><br>
+        Jan 31 – Feb 7, 2026<br>
+        California Institute of the Arts
+      </div>
+
     </div>
-
-    <!-- info under image -->
-    <div class="work-info">
-      <em>There Was a Box Man</em><br>
-      Jan 31 – Feb 7, 2026<br>
-      California Institute of the Arts
-    </div>
-
   </main>
 
   <script>
@@ -81,13 +48,12 @@
       "boxman-12.JPG"
     ];
 
-    let currentIndex = 0;
-    const imgEl = document.getElementById("boxmanImage");
-    const wrap = document.getElementById("imageWrap");
+    let current = 0;
+    const img = document.getElementById("boxman-image");
 
-    wrap.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      imgEl.src = images[currentIndex];
+    img.addEventListener("click", () => {
+      current = (current + 1) % images.length;
+      img.src = images[current];
     });
   </script>
 
