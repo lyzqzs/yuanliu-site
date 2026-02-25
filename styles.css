@@ -175,20 +175,19 @@ a:hover{ text-decoration:underline; }
 /* =========================
    Projects page
    ========================= */
-
-.page-projects .projects-wrap{
+.page-projects .projects-wrap,
+.page-archive .projects-wrap{
   margin: 120px 120px;
   max-width: 520px;
 }
 
-.page-projects .projects-group{ margin-bottom: 48px; }
-
-.page-projects .section-label{
-  color: var(--muted);
-  margin: 0 0 14px 0;
+.page-projects .projects-group,
+.page-archive .projects-group{
+  margin-bottom: 48px;
 }
 
-.page-projects .project-link{
+.page-projects .project-link,
+.page-archive .project-link{
   display:block;
   margin: 0 0 14px 0;
 }
