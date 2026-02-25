@@ -2,37 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boxman — Yuan Liu</title>
+
+  <!-- main site styles -->
   <link rel="stylesheet" href="../styles.css" />
 </head>
 
 <body class="page-project">
 
-  <!-- top center "home" -->
+  <!-- top center home -->
   <nav class="top-nav">
     <a href="../index.html">home</a>
   </nav>
 
-  <main class="project-wrap">
-    <div class="center-list">
-      <h1 class="project-title">Boxman</h1>
+  <main class="project-page">
 
-      <p class="meta">
-        Ongoing project
-      </p>
+    <!-- project header -->
+    <section class="project-header">
+      <h1 class="project-name">There Was a Box Man</h1>
+      <div class="project-meta">
+        Jan 31 – Feb 7, 2026<br>
+        California Institute of the Arts
+      </div>
 
-      <p class="text">
+      <p class="project-text">
         Boxman is an ongoing body of work exploring withdrawal, concealment,
         and the relationship between the body, objects, and lived space.
       </p>
+    </section>
 
-      <div class="gallery">
-        <div class="ph">Image placeholder</div>
-        <div class="ph">Image placeholder</div>
-      </div>
-    </div>
+    <!-- works -->
+    <section class="project-works">
+
+      <img class="work-img" src="../images/boxman/01.jpg" alt="Boxman 01">
+      <img class="work-img" src="../images/boxman/02.jpg" alt="Boxman 02">
+      <img class="work-img" src="../images/boxman/03.jpg" alt="Boxman 03">
+
+    </section>
+
   </main>
+
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox hidden">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- lightbox logic -->
+  <script src="../lightbox.js"></script>
 
 </body>
 </html>
