@@ -222,3 +222,79 @@ a:hover{ text-decoration:underline; }
   font-size: 16px;
   margin-bottom: 12px;
 }
+/* =========================
+   Project page (Boxman)
+   ========================= */
+
+.page-project{
+  background:#fff;
+}
+
+.project-page{
+  max-width: 640px;
+  margin: 120px auto 160px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.project-header{
+  margin-bottom: 64px;
+}
+
+.project-name{
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.project-meta{
+  font-size: 13px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 24px;
+}
+
+.project-text{
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* works */
+
+.project-works{
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.work-img{
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+/* =========================
+   Lightbox (Quinn-like)
+   ========================= */
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.lightbox img{
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.lightbox.hidden{
+  display: none;
+}
