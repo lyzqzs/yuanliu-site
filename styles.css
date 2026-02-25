@@ -194,7 +194,7 @@ a:hover{ text-decoration:underline; }
 /* ===== center-up list (projects & archive) ===== */
 
 .center-list{
-  margin-top: 22vh;      /* 中间偏上：和首页对齐 */
+  margin-top: 18vh;      /* 中间偏上：和首页对齐 */
   margin-left: auto;
   margin-right: auto;
   max-width: 320px;     /* 缩短鼠标移动距离 */
