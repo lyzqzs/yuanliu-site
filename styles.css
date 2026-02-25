@@ -198,4 +198,5 @@ a:hover{ text-decoration:underline; }
   width: 100%;
   max-width: 320px;
   margin: 18vh auto 0;       /* 上移/下移只调 18vh */
+   text-align: center;   /* 👈 就是这句 */
 }
