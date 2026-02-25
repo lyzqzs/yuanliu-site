@@ -298,3 +298,40 @@ a:hover{ text-decoration:underline; }
 .lightbox.hidden{
   display: none;
 }
+/* =========================
+   Work page (single-image click-through)
+   ========================= */
+
+.page-work .work-wrap{
+  max-width: 900px;
+  margin: 110px auto 140px;
+  padding: 0 20px;
+}
+
+.page-work .work-figure{
+  margin: 0;
+  text-align: center;
+  cursor: pointer; /* 告诉观众：可以点 */
+}
+
+.page-work .work-img{
+  display: block;
+  width: min(760px, 92vw);
+  height: auto;
+  margin: 0 auto;
+}
+
+.page-work .work-caption{
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.page-work .work-title{
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.page-work .work-meta{
+  color: rgba(0,0,0,0.7);
+}
