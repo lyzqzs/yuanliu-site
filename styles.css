@@ -41,7 +41,7 @@ a:hover{ text-decoration:underline; }
   display:flex;
   flex-direction:column;
   gap:10px;
-  margin-top:12vh;
+  margin-top:6vh;
 }
 
 .hr{
