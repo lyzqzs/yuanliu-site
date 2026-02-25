@@ -2,96 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Boxman — Yuan Liu</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>There Was a Box Man — Yuan Liu</title>
+
+  <!-- main site styles -->
+  <link rel="stylesheet" href="../../styles.css" />
+
+  <style>
+    /* 页面主体 */
+    .boxman-page{
+      max-width: 900px;
+      margin: 140px auto 120px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    /* 图片区域 */
+    .image-wrap{
+      cursor: pointer;
+    }
+
+    .image-wrap img{
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+    /* 图片下方信息（仿 Quinn） */
+    .work-info{
+      font-size: 13px;
+      line-height: 1.5;
+      color: #111;
+    }
+
+    .work-info em{
+      font-style: italic;
+    }
+  </style>
 </head>
 
-<body class="page-work">
+<body>
 
+  <!-- top center home -->
   <nav class="top-nav">
-    <a href="../index.html">home</a>
+    <a href="../../index.html">home</a>
   </nav>
 
-  <main class="work-wrap">
+  <main class="boxman-page">
 
-    <!-- 一张图区域：点图切换下一张 -->
-    <figure class="work-figure" id="viewer" aria-label="Image viewer">
-      <img id="workImg" class="work-img" src="" alt="" />
-      <figcaption class="work-caption">
-        <div class="work-title" id="capTitle"></div>
-        <div class="work-meta" id="capMeta"></div>
-      </figcaption>
-    </figure>
+    <!-- image (click to advance) -->
+    <div class="image-wrap" id="imageWrap">
+      <img id="boxmanImage" src="boxman-01.JPG" alt="There Was a Box Man">
+    </div>
+
+    <!-- info under image -->
+    <div class="work-info">
+      <em>There Was a Box Man</em><br>
+      Jan 31 – Feb 7, 2026<br>
+      California Institute of the Arts
+    </div>
 
   </main>
 
   <script>
-    // ✅ 你把图片放在：/projects/boxman/ 这个文件夹里（建议这样放）
-    // 例如：/projects/boxman/boxman-01.jpg
-    // 注意大小写必须完全一致（JPG vs jpg）
-
-    const works = [
-      {
-        src: "boxman/boxman-01.jpg",
-        alt: "There Was a Box Man — image 1",
-        title: "There Was a Box Man",
-        meta: "Jan 31 – Feb 7, 2026<br>California Institute of the Arts"
-      },
-      {
-        src: "boxman/boxman-02.jpg",
-        alt: "There Was a Box Man — image 2",
-        title: "There Was a Box Man",
-        meta: "Jan 31 – Feb 7, 2026<br>California Institute of the Arts"
-      },
-      {
-        src: "boxman/boxman-03.jpg",
-        alt: "There Was a Box Man — image 3",
-        title: "There Was a Box Man",
-        meta: "Jan 31 – Feb 7, 2026<br>California Institute of the Arts"
-      }
+    const images = [
+      "boxman-01.JPG",
+      "boxman-02.JPG",
+      "boxman-03.JPG",
+      "boxman-04.JPG",
+      "boxman-05.JPG",
+      "boxman-06.JPG",
+      "boxman-07.JPG",
+      "boxman-08.JPG",
+      "boxman-09.JPG",
+      "boxman-10.JPG",
+      "boxman-11.JPG",
+      "boxman-12.JPG"
     ];
 
-    let i = 0;
+    let currentIndex = 0;
+    const imgEl = document.getElementById("boxmanImage");
+    const wrap = document.getElementById("imageWrap");
 
-    const img = document.getElementById("workImg");
-    const capTitle = document.getElementById("capTitle");
-    const capMeta = document.getElementById("capMeta");
-    const viewer = document.getElementById("viewer");
-
-    function render(index){
-      const item = works[index];
-      img.src = item.src;
-      img.alt = item.alt || "";
-      capTitle.textContent = item.title || "";
-      capMeta.innerHTML = item.meta || "";
-    }
-
-    function next(){
-      i = (i + 1) % works.length;
-      render(i);
-    }
-
-    function prev(){
-      i = (i - 1 + works.length) % works.length;
-      render(i);
-    }
-
-    // 点击图片切换下一张
-    viewer.addEventListener("click", next);
-
-    // 键盘左右也能切
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    });
-
-    // 防止第一张空白
-    render(i);
-
-    // 如果图片路径错，会在控制台看到 404（很容易定位）
-    img.addEventListener("error", () => {
-      console.warn("Image failed to load:", img.src);
+    wrap.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      imgEl.src = images[currentIndex];
     });
   </script>
 
