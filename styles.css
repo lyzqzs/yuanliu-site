@@ -74,7 +74,7 @@ a:hover{
   margin-top:6vh;
 }
 
-/* 横线 + 小人 */
+/* （可选）横线 + 小人容器：你首页已经删了小人，这段留着也不影响 */
 .divider{
   display:flex;
   justify-content:center;
@@ -83,16 +83,16 @@ a:hover{
   margin:6px 0;
 }
 
-/* 横线 */
+/* 横线：关键修复 —— 用 block + margin auto 让它居中 */
 .hr{
-  display:inline-block;
-  width:18px;
+  display:block;
+  width:18px;          /* 想更短：改成 14px */
   height:1px;
   background:var(--rule);
-  margin:0;
+  margin:6px auto;     /* 关键：左右 auto 居中 */
 }
 
-/* 页面里的小人（不是cursor） */
+/* （可选）页面里的小人：你首页删了 img，这段留着也不影响 */
 .tiny-man{
   width:12px;
   height:auto;
