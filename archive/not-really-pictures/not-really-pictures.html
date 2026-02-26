@@ -6,66 +6,35 @@
   <title>Not Really Pictures — Yuan Liu</title>
 
   <link rel="stylesheet" href="../../styles.css" />
-
-  <!-- 兜底：不管外部 CSS 有没有加载，都强制变成“居中小图” -->
-  <style>
-    .project-wrap{
-      max-width: 900px;
-      margin: 120px auto 160px;
-      text-align: center;
-      padding: 0 20px;
-    }
-    .project-image{
-      max-width: 100%;
-      max-height: 70vh;
-      width: auto;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      cursor: pointer;
-    }
-    .project-meta{
-      margin-top: 24px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(0,0,0,0.55);
-    }
-    .project-meta em{
-      font-style: italic;
-      color: #111;
-    }
-  </style>
 </head>
 
-<body>
+<body class="page-work">
 
   <nav class="top-nav">
     <a href="../../index.html">home</a>
   </nav>
 
-  <main class="project-wrap">
-    <img
-      id="projectImage"
-      class="project-image"
-      src="not-really-01.JPG",
-      src="not-really-02.JPG",
-      src="not-really-03.JPG",
-      src="not-really-04.JPG",
-      src="not-really-05.JPG",
-      src="not-really-06.JPG",
-      src="not-really-07.JPG"
-      alt="Not Really Pictures"
-    />
+  <main class="work-wrap">
+    <figure class="work-figure">
+      <img
+        id="projectImage"
+        class="work-img"
+        src="not-really-01.JPG"
+        alt="Not Really Pictures"
+      />
+    </figure>
 
-    <div class="project-meta">
-      <em>Chasing Pigeons</em><br />
-      Denison Museum, 2022
-    </div>
+    <figcaption class="work-caption">
+      <div class="work-title">Chasing Pigeons</div>
+      <div class="work-meta">Denison Museum, 2022</div>
+    </figcaption>
   </main>
 
   <script>
     const images = [
       "not-really-01.JPG"
+      // "not-really-02.JPG",
+      // "not-really-03.JPG",
     ];
 
     let index = 0;
