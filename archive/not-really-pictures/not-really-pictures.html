@@ -2,29 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Not Really Pictures — Yuan Liu</title>
-  <link rel="stylesheet" href="../styles.css" />
+
+  <link rel="stylesheet" href="../../styles.css" />
 </head>
+
 <body>
-  <main class="container">
-    <div class="header">
-      <a href="../index.html">Yuan Liu</a>
-      <nav class="nav">
-        <a href="../projects.html">Projects</a>
-        <a href="../info.html">Info</a>
-      </nav>
-    </div>
 
-    <h1 class="project-title">Not Really Pictures</h1>
-    <p class="meta">Archive · (Year)</p>
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
 
-    <p class="text">(Short note. Could be 1–2 lines.)</p>
+  <main class="project-wrap">
+    <img
+      id="projectImage"
+      class="project-image"
+      src="not-really-01.JPG"
+      alt="Not Really Pictures"
+    />
 
-    <div class="section-title">Materials</div>
-    <div class="gallery">
-      <div class="ph">Image / doc placeholder</div>
+    <div class="project-meta">
+      <em>Chasing Pigeons</em><br />
+      Denison Museum<br />
+      2022
     </div>
   </main>
+
+  <script>
+    const images = [
+      "not-really-01.JPG"
+    ];
+
+    let index = 0;
+    const img = document.getElementById("projectImage");
+
+    img.addEventListener("click", () => {
+      index = (index + 1) % images.length;
+      img.src = images[index];
+    });
+  </script>
+
 </body>
 </html>
