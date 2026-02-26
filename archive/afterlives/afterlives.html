@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afterlives — Yuan Liu</title>
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body class="page-work">
+
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
+
+  <main class="work-wrap">
+    <figure class="work-figure">
+      <img
+        id="projectImage"
+        class="work-img"
+        src="afterlives-01.JPG"
+        alt="Afterlives"
+      />
+    </figure>
+
+    <figcaption class="work-caption">
+      <div class="work-title">Afterlives,</div>
+      <div class="work-meta">2021</div>
+    </figcaption>
+  </main>
+
+  <script>
+    // ✅ 把这里改成你文件夹里真实存在的文件名（大小写必须一致）
+    const images = [
+      "afterlives-01.JPG",
+      "afterlives-02.JPG",
+      "afterlives-03.JPG"
+      // "afterlives-02.JPG",
+      // "afterlives-03.JPG",
+    ];
+
+    let index = 0;
+    const imgEl = document.getElementById("projectImage");
+
+    function show(i){
+      index = (i + images.length) % images.length;
+      const nextSrc = images[index];
+
+      // 预加载 + 抓错文件名
+      const pre = new Image();
+      pre.onload = () => { imgEl.src = nextSrc; };
+      pre.onerror = () => {
+        console.error("Image failed to load:", nextSrc);
+        alert("找不到图片文件： " + nextSrc + "\n检查大小写 / 扩展名 JPG/jpg");
+      };
+      pre.src = nextSrc;
+    }
+
+    function next(){ show(index + 1); }
+    function prev(){ show(index - 1); }
+
+    imgEl.addEventListener("click", () => {
+      if (images.length > 1) next();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (images.length <= 1) return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    show(0);
+  </script>
+
+</body>
+</html>
