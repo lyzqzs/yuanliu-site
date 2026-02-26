@@ -5,8 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Not Really Pictures — Yuan Liu</title>
 
-  <!-- 两层返回 root -->
   <link rel="stylesheet" href="../../styles.css" />
+
+  <!-- 兜底：不管外部 CSS 有没有加载，都强制变成“居中小图” -->
+  <style>
+    .project-wrap{
+      max-width: 900px;
+      margin: 120px auto 160px;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .project-image{
+      max-width: 100%;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+    .project-meta{
+      margin-top: 24px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.55);
+    }
+    .project-meta em{
+      font-style: italic;
+      color: #111;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,7 +44,6 @@
   </nav>
 
   <main class="project-wrap">
-
     <img
       id="projectImage"
       class="project-image"
@@ -28,7 +55,6 @@
       <em>Chasing Pigeons</em><br />
       Denison Museum, 2022
     </div>
-
   </main>
 
   <script>
