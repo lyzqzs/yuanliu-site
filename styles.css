@@ -54,12 +54,30 @@ a:hover{ text-decoration:underline; }
   margin-top:6vh;
 }
 
+/* 横线 + 小人 */
+.divider{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  margin:6px 0;
+}
+
+/* 横线 */
 .hr{
   display:inline-block;
   width:18px;
   height:1px;
   background:var(--rule);
-  margin:6px auto;
+  margin:0;
+}
+
+/* 超级小小人 */
+.tiny-man{
+  width:8px;       /* 想更明显改成 10px */
+  height:auto;
+  display:block;
+  opacity:0.85;
 }
 
 .bottom{
