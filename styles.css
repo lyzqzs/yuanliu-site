@@ -11,6 +11,21 @@
 
 *{ box-sizing:border-box; }
 
+/* =========================
+   Cursor (little man)
+   Put cursor-man.png next to styles.css
+   If you put it in /assets/, change to: url("assets/cursor-man.png")
+   Hotspot: 16 16 is center-ish; adjust if needed.
+   ========================= */
+html,body{
+  cursor: url("cursor-man.png") 16 16, auto;
+}
+
+/* keep pointer feel on interactive elements (still the little man) */
+a, button, [role="button"], input[type="button"], input[type="submit"]{
+  cursor: url("cursor-man.png") 16 16, pointer;
+}
+
 html,body{
   height:100%;
   margin:0;
@@ -72,9 +87,9 @@ a:hover{ text-decoration:underline; }
   margin:0;
 }
 
-/* 超级小小人 */
+/* 超级小小人（这是页面里的装饰，不是鼠标cursor） */
 .tiny-man{
-  width:12px;       /* 想更明显改成 10px */
+  width:12px;
   height:auto;
   display:block;
   opacity:0.85;
@@ -193,7 +208,7 @@ a:hover{ text-decoration:underline; }
   align-items: center;
   justify-content: center;
   z-index: 999;
-  cursor: pointer;
+  cursor: pointer; /* keep lightbox click-anywhere feel */
 }
 
 .lightbox img{
