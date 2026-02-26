@@ -7,29 +7,26 @@
   <link rel="stylesheet" href="../../styles.css" />
 </head>
 
-<body>
+<body class="page-work">
 
-  <!-- top center home -->
   <nav class="top-nav">
     <a href="../../index.html">home</a>
   </nav>
 
-  <main class="boxman-gallery">
-    <div class="boxman-frame">
-
+  <main class="work-wrap">
+    <figure class="work-figure">
       <img
-        id="boxman-image"
+        id="projectImage"
+        class="work-img"
         src="boxman-01.JPG"
         alt="There Was a Box Man"
       />
+    </figure>
 
-      <div class="small" style="margin-top:14px;">
-        <em>There Was a Box Man</em><br>
-        Jan 31 – Feb 7, 2026<br>
-        California Institute of the Arts
-      </div>
-
-    </div>
+    <figcaption class="work-caption">
+      <div class="work-title">There Was a Box Man</div>
+      <div class="work-meta">Jan 31 – Feb 7, 2026<br>California Institute of the Arts</div>
+    </figcaption>
   </main>
 
   <script>
@@ -45,15 +42,23 @@
       "boxman-09.JPG",
       "boxman-10.JPG",
       "boxman-11.JPG",
-      "boxman-12.JPG"
+      "boxman-12.JPG",
     ];
 
-    let current = 0;
-    const img = document.getElementById("boxman-image");
+    let index = 0;
+    const img = document.getElementById("projectImage");
 
-    img.addEventListener("click", () => {
-      current = (current + 1) % images.length;
-      img.src = images[current];
+    function show(i){
+      index = (i + images.length) % images.length;
+      img.src = images[index];
+    }
+
+    img.addEventListener("click", () => show(index + 1));
+
+    // 可选：左右键切图（很顺手）
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(index + 1);
+      if (e.key === "ArrowLeft") show(index - 1);
     });
   </script>
 
