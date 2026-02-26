@@ -31,19 +31,52 @@
   </main>
 
   <script>
+    // ✅ 这里填你文件夹里的图片文件名（大小写要完全一致）
     const images = [
-      "not-really-01.JPG"
+      "not-really-01.JPG",
+      "not-really-02.JPG",
+      "not-really-03.JPG",
+      "not-really-04.JPG",
+      "not-really-05.JPG",
+      "not-really-06.JPG",
+      "not-really-07.JPG"
       // "not-really-02.JPG",
       // "not-really-03.JPG",
     ];
 
     let index = 0;
-    const img = document.getElementById("projectImage");
+    const imgEl = document.getElementById("projectImage");
 
-    img.addEventListener("click", () => {
-      index = (index + 1) % images.length;
-      img.src = images[index];
+    function show(i) {
+      index = (i + images.length) % images.length;
+      const nextSrc = images[index];
+
+      // 预加载，避免切换瞬间空白/闪烁
+      const pre = new Image();
+      pre.onload = () => { imgEl.src = nextSrc; };
+      pre.onerror = () => {
+        console.error("Image failed to load:", nextSrc);
+      };
+      pre.src = nextSrc;
+    }
+
+    function next() { show(index + 1); }
+    function prev() { show(index - 1); }
+
+    // 点击图片切下一张
+    imgEl.addEventListener("click", () => {
+      if (images.length > 1) next();
     });
+
+    // 左右键切换
+    window.addEventListener("keydown", (e) => {
+      if (images.length <= 1) return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    // 初始对齐：如果你把第一张不是 01，也能正确显示
+    show(0);
   </script>
 
 </body>
