@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mountain Tree — Yuan Liu</title>
+
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body class="page-work">
+
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
+
+  <main class="work-wrap">
+    <figure class="work-figure">
+      <img
+        id="projectImage"
+        class="work-img"
+        src="mountain-tree-01.JPG"
+        alt="Mountain Tree"
+      />
+    </figure>
+
+    <figcaption class="work-caption">
+      <div class="work-title">Mountain Tree</div>
+      <div class="work-meta">2021</div>
+    </figcaption>
+  </main>
+
+  <script>
+    const images = [
+      "mountain-tree-01.JPG",
+      // "mountain-tree-02.JPG",
+      // "mountain-tree-03.JPG",
+    ];
+
+    let index = 0;
+    const img = document.getElementById("projectImage");
+
+    function show(i){
+      index = (i + images.length) % images.length;
+      img.src = images[index];
+    }
+
+    img.addEventListener("click", () => {
+      if (images.length > 1) show(index + 1);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (images.length <= 1) return;
+      if (e.key === "ArrowRight") show(index + 1);
+      if (e.key === "ArrowLeft") show(index - 1);
+    });
+  </script>
+
+</body>
+</html>
