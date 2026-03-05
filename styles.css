@@ -378,3 +378,32 @@ a:hover{
     font-size: 18px;
   }
 }
+
+
+/* =========================
+   FORCE FIX: home toggle size + mobile overlap
+   ========================= */
+
+/* Projects button always same as home-item (even if HTML class missing / cached) */
+.page.page-home .home-toggle{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1.08;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+
+/* Prevent image from covering left nav on mobile (and safe-area) */
+.page.page-home .home-hero{
+  padding-top: calc(120px + env(safe-area-inset-top));
+}
+
+/* slightly reduce huge text on small screens so it doesn't crash into image */
+@media (max-width: 720px){
+  .page.page-home .home-toggle{
+    font-size: 22px;
+  }
+  .page.page-home .home-hero{
+    padding-top: calc(150px + env(safe-area-inset-top));
+  }
+}
