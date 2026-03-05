@@ -223,3 +223,94 @@ a:hover{
 }
 
 .lightbox.hidden{ display:none; }
+
+/* =========================
+   Home v2 (LULLADY-like layout)
+   Only applies to index: .page.page-home
+   ========================= */
+
+.page.page-home{
+  /* 覆盖你原 .page 的 flex/spacing，仅首页生效 */
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+/* 左上 / 右上导航：固定角落 */
+.page.page-home .home-left,
+.page.page-home .home-right{
+  position: fixed;
+  top: 28px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* 每行距离，贴近图一 */
+}
+
+.page.page-home .home-left{
+  left: 28px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.page.page-home .home-right{
+  right: 28px;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* 字体/字号：只把首页导航调到你图一那种“标题感” */
+.page.page-home .home-item{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* 你全站本来就是这个系 */
+  font-size: 28px;        /* 图一那种大字：想更大改 30/32 */
+  line-height: 1.08;      /* 紧一点 */
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.page.page-home .home-item:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 中间大图：真正居中 */
+.page.page-home .home-hero{
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 90px 28px 60px; /* 给顶部导航留空间 */
+}
+
+.page.page-home .home-hero-img{
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(820px, 62vw); /* 像图一那样偏窄、像封面 */
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+/* 手机适配 */
+@media (max-width: 720px){
+  .page.page-home .home-left,
+  .page.page-home .home-right{
+    top: 18px;
+  }
+  .page.page-home .home-left{ left: 18px; }
+  .page.page-home .home-right{ right: 18px; }
+
+  .page.page-home .home-item{
+    font-size: 22px;
+  }
+
+  .page.page-home .home-hero{
+    padding: 74px 18px 40px;
+  }
+
+  .page.page-home .home-hero-img{
+    max-width: min(92vw, 820px);
+    max-height: 72vh;
+  }
+}
