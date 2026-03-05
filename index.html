@@ -13,7 +13,6 @@
 <body>
   <main class="page page-home">
 
-    <!-- 左上：name + Projects(可展开) + Archive(可展开) -->
     <nav class="home-left" aria-label="Home navigation">
       <a class="home-item home-name" href="index.html">Yuan Liu</a>
 
@@ -24,7 +23,7 @@
               aria-expanded="false">
         Projects
       </button>
-      <div id="projects-list" class="home-sublist" hidden>
+      <div id="projects-list" class="home-sublist is-collapsed" hidden>
         <a class="home-subitem" href="projects/boxman/boxman.html">Boxman</a>
         <a class="home-subitem" href="projects/bodily-images/bodily-images.html">Bodily Images</a>
         <a class="home-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">Shadow of Shadows</a>
@@ -37,7 +36,7 @@
               aria-expanded="false">
         Archive
       </button>
-      <div id="archive-list" class="home-sublist" hidden>
+      <div id="archive-list" class="home-sublist is-collapsed" hidden>
         <a class="home-subitem" href="archive/not-really-pictures/not-really-pictures.html">Not Really Pictures</a>
         <a class="home-subitem" href="archive/mountain-tree/mountain-tree.html">Mountain Tree</a>
         <a class="home-subitem" href="archive/in-columbus/in-columbus.html">In Columbus</a>
@@ -45,13 +44,11 @@
       </div>
     </nav>
 
-    <!-- 右上 -->
     <nav class="home-right" aria-label="Info navigation">
       <a class="home-item" href="info.html">Info</a>
       <a class="home-item" href="contact.html">Contact</a>
     </nav>
 
-    <!-- 中间图 -->
     <section class="home-hero" aria-label="Featured image">
       <img class="home-hero-img" src="hero.jpg" alt="Featured work by Yuan Liu" />
     </section>
@@ -59,46 +56,53 @@
   </main>
 
   <script>
-    // Home dropdown toggles (Projects / Archive)
     (function () {
       const toggles = document.querySelectorAll(".home-toggle");
+      const panels = ["projects-list", "archive-list"].map(id => document.getElementById(id)).filter(Boolean);
+
+      // ✅ 强制：初始加载全部收起（防止被别的代码/缓存影响）
+      panels.forEach(p => {
+        p.hidden = true;
+        p.classList.add("is-collapsed");
+      });
+      toggles.forEach(b => b.setAttribute("aria-expanded", "false"));
 
       function closeAll(exceptId) {
         toggles.forEach(btn => {
           const id = btn.getAttribute("data-target");
           const panel = document.getElementById(id);
-          const isExcept = (id === exceptId);
-
           if (!panel) return;
-
-          if (!isExcept) {
+          if (id !== exceptId) {
             panel.hidden = true;
+            panel.classList.add("is-collapsed");
             btn.setAttribute("aria-expanded", "false");
           }
         });
       }
 
       toggles.forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           const id = btn.getAttribute("data-target");
           const panel = document.getElementById(id);
           if (!panel) return;
 
-          const willOpen = panel.hidden; // currently closed -> open
-          closeAll(id); // only keep this one
+          const willOpen = panel.hidden === true; // 当前关 -> 打开
+          closeAll(id);
 
           panel.hidden = !willOpen;
+          panel.classList.toggle("is-collapsed", !willOpen);
           btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
         });
       });
 
-      // click outside to close
+      // 点击空白处收起
       document.addEventListener("click", (e) => {
         const insideLeftNav = e.target.closest(".home-left");
         if (!insideLeftNav) closeAll(null);
       });
 
-      // Esc to close
+      // Esc 收起
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeAll(null);
       });
