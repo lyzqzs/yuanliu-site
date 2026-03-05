@@ -407,3 +407,7 @@ a:hover{
     padding-top: calc(150px + env(safe-area-inset-top));
   }
 }
+/* Home dropdown should be hidden by default (safety net) */
+.page.page-home .home-dropdown[hidden]{
+  display: none !important;
+}
