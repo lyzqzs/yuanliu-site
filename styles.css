@@ -320,7 +320,7 @@ a:hover{
 }
 
 .page-work .work-figure img{
-  cursor: url("../cursor-man.png") 16 16, pointer; /* 你已有 cursor-man，这里确保是 pointer 感 */
+  cursor: url("/cursor-man.png") 16 16, pointer; /* 你已有 cursor-man，这里确保是 pointer 感 */
 }
 
 /* subtle hint */
@@ -338,4 +338,57 @@ a:hover{
 
 .page-work .work-figure:hover::after{
   opacity: 1;
+}
+
+/* =========================
+   Home dropdown (Projects reveal)
+   Only applies to index: .page.page-home
+   ========================= */
+
+.page.page-home .home-toggle{
+  /* make button look like link */
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-weight: inherit;
+}
+
+.page.page-home .home-toggle:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* dropdown list under Projects */
+.page.page-home .home-dropdown{
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* sub items: slightly smaller + lighter (still same system) */
+.page.page-home .home-subitem{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.08;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.7);
+  text-decoration: none;
+}
+
+.page.page-home .home-subitem:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 720px){
+  .page.page-home .home-subitem{
+    font-size: 18px;
+  }
 }
