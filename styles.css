@@ -367,3 +367,7 @@ a:hover{
     max-height: 72vh;
   }
 }
+/* Safety: if a panel is marked collapsed, force it hidden */
+.page.page-home .home-sublist.is-collapsed{
+  display: none !important;
+}
