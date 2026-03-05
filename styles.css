@@ -56,7 +56,7 @@ a:hover{
 }
 
 /* =========================
-   Home (index)
+   Home (legacy layout)
    ========================= */
 .page{
   min-height:100vh;
@@ -74,7 +74,7 @@ a:hover{
   margin-top:6vh;
 }
 
-/* （可选）横线 + 小人容器：你首页已经删了小人，这段留着也不影响 */
+/* divider */
 .divider{
   display:flex;
   justify-content:center;
@@ -83,16 +83,14 @@ a:hover{
   margin:6px 0;
 }
 
-/* 横线：关键修复 —— 用 block + margin auto 让它居中 */
 .hr{
   display:block;
-  width:18px;          /* 想更短：改成 14px */
+  width:18px;
   height:1px;
   background:var(--rule);
-  margin:6px auto;     /* 关键：左右 auto 居中 */
+  margin:6px auto;
 }
 
-/* （可选）页面里的小人：你首页删了 img，这段留着也不影响 */
 .tiny-man{
   width:12px;
   height:auto;
@@ -177,6 +175,7 @@ a:hover{
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative; /* for hint */
 }
 
 .page-work .work-figure img{
@@ -185,6 +184,26 @@ a:hover{
   height: auto;
   max-width: min(780px, 86vw);
   max-height: 70vh;
+
+  /* IMPORTANT: root path works for /projects/... pages */
+  cursor: url("/cursor-man.png") 16 16, pointer;
+}
+
+/* subtle hint */
+.page-work .work-figure::after{
+  content: "click to view next";
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.page-work .work-figure:hover::after{
+  opacity: 1;
 }
 
 .page-work .work-caption{
@@ -230,13 +249,12 @@ a:hover{
    ========================= */
 
 .page.page-home{
-  /* 覆盖你原 .page 的 flex/spacing，仅首页生效 */
   padding: 0;
   display: block;
   position: relative;
 }
 
-/* 左上 / 右上导航：固定角落 */
+/* Left / right nav fixed */
 .page.page-home .home-left,
 .page.page-home .home-right{
   position: fixed;
@@ -244,7 +262,7 @@ a:hover{
   z-index: 20;
   display: flex;
   flex-direction: column;
-  gap: 6px; /* 每行距离，贴近图一 */
+  gap: 6px;
 }
 
 .page.page-home .home-left{
@@ -259,11 +277,11 @@ a:hover{
   text-align: right;
 }
 
-/* 字体/字号：只把首页导航调到你图一那种“标题感” */
+/* big nav text */
 .page.page-home .home-item{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* 你全站本来就是这个系 */
-  font-size: 28px;        /* 图一那种大字：想更大改 30/32 */
-  line-height: 1.08;      /* 紧一点 */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1.08;
   letter-spacing: 0.2px;
   font-weight: 500;
   text-decoration: none;
@@ -274,25 +292,67 @@ a:hover{
   text-underline-offset: 4px;
 }
 
-/* 中间大图：真正居中 */
+/* Center hero */
 .page.page-home .home-hero{
   min-height: 100vh;
   width: 100%;
   display: grid;
   place-items: center;
-  padding: 90px 28px 60px; /* 给顶部导航留空间 */
+  padding: 90px 28px 60px;
 }
 
 .page.page-home .home-hero-img{
   display: block;
   width: auto;
   height: auto;
-  max-width: min(820px, 62vw); /* 像图一那样偏窄、像封面 */
+  max-width: min(820px, 62vw);
   max-height: 78vh;
   object-fit: contain;
 }
 
-/* 手机适配 */
+/* =========================
+   Home dropdown (Projects reveal) — FINAL
+   ========================= */
+
+/* button must look EXACTLY like link */
+.page.page-home .home-toggle{
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;              /* inherits 28px etc from .home-item */
+  color: inherit;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* dropdown list */
+.page.page-home .home-dropdown{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* subitems slightly smaller and muted */
+.page.page-home .home-subitem{
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 1.08;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.65);
+  text-decoration: none;
+}
+
+.page.page-home .home-subitem:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Mobile */
 @media (max-width: 720px){
   .page.page-home .home-left,
   .page.page-home .home-right{
@@ -313,81 +373,7 @@ a:hover{
     max-width: min(92vw, 820px);
     max-height: 72vh;
   }
-}
-/* ---- gallery hint for clickable image ---- */
-.page-work .work-figure{
-  position: relative;
-}
 
-.page-work .work-figure img{
-  cursor: url("/cursor-man.png") 16 16, pointer; /* 你已有 cursor-man，这里确保是 pointer 感 */
-}
-
-/* subtle hint */
-.page-work .work-figure::after{
-  content: "click to view next";
-  position: absolute;
-  left: 0;
-  bottom: -22px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.35);
-  opacity: 0;
-  transition: opacity 160ms ease;
-  pointer-events: none;
-}
-
-.page-work .work-figure:hover::after{
-  opacity: 1;
-}
-
-/* =========================
-   Home dropdown (Projects reveal)
-   Only applies to index: .page.page-home
-   ========================= */
-
-.page.page-home .home-toggle{
-  /* make button look like link */
-  background: transparent;
-  border: 0;
-  padding: 0;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  font-weight: inherit;
-}
-
-.page.page-home .home-toggle:hover{
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* dropdown list under Projects */
-.page.page-home .home-dropdown{
-  margin-top: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* sub items: slightly smaller + lighter (still same system) */
-.page.page-home .home-subitem{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  line-height: 1.08;
-  letter-spacing: 0.2px;
-  font-weight: 500;
-  color: rgba(0,0,0,0.7);
-  text-decoration: none;
-}
-
-.page.page-home .home-subitem:hover{
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-@media (max-width: 720px){
   .page.page-home .home-subitem{
     font-size: 18px;
   }
