@@ -10,21 +10,45 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <main class="page">
 
-    <div class="top">
-      <div>Yuan Liu</div>
+    <!-- Left top nav -->
+    <nav class="nav nav-left" aria-label="Primary">
+      <div class="brand">
+        <a class="brand-link" href="index.html">Yuan Liu</a>
+      </div>
 
-      <span class="hr"></span>
+      <div class="nav-row">
+        <a href="projects.html">Projects</a>
+        <a href="archive.html">Archive</a>
+      </div>
+    </nav>
 
-      <a href="projects.html">Projects</a>
-      <a href="info.html">Info</a>
-    </div>
+    <!-- Right top nav -->
+    <nav class="nav nav-right" aria-label="Info">
+      <div class="nav-row">
+        <a href="info.html">Info</a>
+        <a href="mailto:yuanliu@students.calarts.edu">Contact</a>
+      </div>
+    </nav>
 
-    <div class="bottom">
-      <a href="archive.html">archive</a>
-    </div>
+    <!-- Center hero image -->
+    <section class="hero" aria-label="Featured work">
+      <!-- 把 src 换成你想用的那张图路径 -->
+      <img
+        class="hero-img"
+        src="images/hero.jpg"
+        alt="Featured work by Yuan Liu"
+        loading="eager"
+      />
+    </section>
+
+    <!-- Optional bottom-left small label (可删) -->
+    <footer class="footer">
+      <span class="footer-text"> </span>
+    </footer>
 
   </main>
 </body>
