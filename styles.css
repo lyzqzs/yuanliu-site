@@ -56,7 +56,7 @@ a:hover{
 }
 
 /* =========================
-   Home (legacy layout)
+   Home (old layout - keep for other pages if you still use it)
    ========================= */
 .page{
   min-height:100vh;
@@ -74,7 +74,6 @@ a:hover{
   margin-top:6vh;
 }
 
-/* divider */
 .divider{
   display:flex;
   justify-content:center;
@@ -108,7 +107,7 @@ a:hover{
 }
 
 /* =========================
-   Projects + Archive list (center-up)
+   Projects + Archive list (center-up)  (used by projects.html / archive.html pages)
    ========================= */
 .center-list{
   width: 100%;
@@ -175,7 +174,7 @@ a:hover{
   width: 100%;
   display: flex;
   justify-content: center;
-  position: relative; /* for hint */
+  position: relative;
 }
 
 .page-work .work-figure img{
@@ -184,26 +183,6 @@ a:hover{
   height: auto;
   max-width: min(780px, 86vw);
   max-height: 70vh;
-
-  /* IMPORTANT: root path works for /projects/... pages */
-  cursor: url("/cursor-man.png") 16 16, pointer;
-}
-
-/* subtle hint */
-.page-work .work-figure::after{
-  content: "click to view next";
-  position: absolute;
-  left: 0;
-  bottom: -22px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.35);
-  opacity: 0;
-  transition: opacity 160ms ease;
-  pointer-events: none;
-}
-
-.page-work .work-figure:hover::after{
-  opacity: 1;
 }
 
 .page-work .work-caption{
@@ -219,6 +198,27 @@ a:hover{
 
 .page-work .work-meta{
   color: rgba(0,0,0,0.65);
+}
+
+/* ---- gallery hint for clickable image ---- */
+.page-work .work-figure img{
+  cursor: url("cursor-man.png") 16 16, pointer;
+}
+
+.page-work .work-figure::after{
+  content: "click to view next";
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.page-work .work-figure:hover::after{
+  opacity: 1;
 }
 
 /* =========================
@@ -254,7 +254,7 @@ a:hover{
   position: relative;
 }
 
-/* Left / right nav fixed */
+/* 左上 / 右上固定角落 */
 .page.page-home .home-left,
 .page.page-home .home-right{
   position: fixed;
@@ -277,14 +277,24 @@ a:hover{
   text-align: right;
 }
 
-/* big nav text */
+/* 首页导航的大字 */
 .page.page-home .home-item{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 28px;
+  font-size: 34px;
   line-height: 1.08;
   letter-spacing: 0.2px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+}
+
+/* 让 button 看起来跟 link 一样 */
+.page.page-home .home-toggle{
+  text-align: left;
 }
 
 .page.page-home .home-item:hover{
@@ -292,7 +302,28 @@ a:hover{
   text-underline-offset: 4px;
 }
 
-/* Center hero */
+/* 下拉列表（默认隐藏，点 Projects/Archive 才出现） */
+.page.page-home .home-sublist{
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.page.page-home .home-subitem{
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: rgba(0,0,0,0.55);
+  text-decoration: none;
+}
+
+.page.page-home .home-subitem:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 中间大图居中 */
 .page.page-home .home-hero{
   min-height: 100vh;
   width: 100%;
@@ -310,49 +341,7 @@ a:hover{
   object-fit: contain;
 }
 
-/* =========================
-   Home dropdown (Projects reveal) — FINAL
-   ========================= */
-
-/* button must look EXACTLY like link */
-.page.page-home .home-toggle{
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  font: inherit;              /* inherits 28px etc from .home-item */
-  color: inherit;
-  text-align: left;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-/* dropdown list */
-.page.page-home .home-dropdown{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* subitems slightly smaller and muted */
-.page.page-home .home-subitem{
-  font-family: inherit;
-  font-size: 20px;
-  line-height: 1.08;
-  letter-spacing: 0.2px;
-  font-weight: 500;
-  color: rgba(0,0,0,0.65);
-  text-decoration: none;
-}
-
-.page.page-home .home-subitem:hover{
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* Mobile */
+/* 手机适配 */
 @media (max-width: 720px){
   .page.page-home .home-left,
   .page.page-home .home-right{
@@ -362,7 +351,11 @@ a:hover{
   .page.page-home .home-right{ right: 18px; }
 
   .page.page-home .home-item{
-    font-size: 22px;
+    font-size: 30px;
+  }
+
+  .page.page-home .home-subitem{
+    font-size: 24px;
   }
 
   .page.page-home .home-hero{
@@ -373,95 +366,4 @@ a:hover{
     max-width: min(92vw, 820px);
     max-height: 72vh;
   }
-
-  .page.page-home .home-subitem{
-    font-size: 18px;
-  }
-}
-
-
-/* =========================
-   FORCE FIX: home toggle size + mobile overlap
-   ========================= */
-
-/* Projects button always same as home-item (even if HTML class missing / cached) */
-.page.page-home .home-toggle{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 28px;
-  line-height: 1.08;
-  letter-spacing: 0.2px;
-  font-weight: 500;
-}
-
-/* Prevent image from covering left nav on mobile (and safe-area) */
-.page.page-home .home-hero{
-  padding-top: calc(120px + env(safe-area-inset-top));
-}
-
-/* slightly reduce huge text on small screens so it doesn't crash into image */
-@media (max-width: 720px){
-  .page.page-home .home-toggle{
-    font-size: 22px;
-  }
-  .page.page-home .home-hero{
-    padding-top: calc(150px + env(safe-area-inset-top));
-  }
-}
-/* Home dropdown should be hidden by default (safety net) */
-.page.page-home .home-dropdown[hidden]{
-  display: none !important;
-}
-/* =========================
-Archive page
-========================= */
-
-.page.page-archive{
-display:flex;
-justify-content:center;
-align-items:flex-start;
-min-height:100vh;
-padding-top:120px;
-}
-
-.archive-nav{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:22px;
-}
-
-.archive-home{
-font-size:16px;
-text-decoration:none;
-color:black;
-}
-
-.archive-toggle{
-background:none;
-border:none;
-font-size:28px;
-font-family:inherit;
-cursor:pointer;
-}
-
-.archive-dropdown{
-display:flex;
-flex-direction:column;
-gap:18px;
-align-items:center;
-margin-top:10px;
-}
-
-.archive-dropdown a{
-text-decoration:none;
-color:#555;
-font-size:18px;
-}
-
-.archive-dropdown a:hover{
-color:black;
-}
-
-.archive-dropdown[hidden]{
-display:none;
 }
