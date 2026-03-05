@@ -314,3 +314,28 @@ a:hover{
     max-height: 72vh;
   }
 }
+/* ---- gallery hint for clickable image ---- */
+.page-work .work-figure{
+  position: relative;
+}
+
+.page-work .work-figure img{
+  cursor: url("../cursor-man.png") 16 16, pointer; /* 你已有 cursor-man，这里确保是 pointer 感 */
+}
+
+/* subtle hint */
+.page-work .work-figure::after{
+  content: "click to view next";
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.page-work .work-figure:hover::after{
+  opacity: 1;
+}
