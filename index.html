@@ -13,14 +13,32 @@
 <body>
   <main class="page page-home">
 
-    <!-- 左上：三行 -->
+    <!-- 左上：名字 + Projects(展开) + Archive -->
     <nav class="home-left" aria-label="Home navigation">
       <a class="home-item home-name" href="index.html">Yuan Liu</a>
-      <a class="home-item" href="projects.html">Projects</a>
+
+      <!-- Projects toggle (no page jump) -->
+      <button
+        class="home-item home-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="home-projects"
+      >
+        Projects
+      </button>
+
+      <!-- Dropdown list -->
+      <div id="home-projects" class="home-dropdown" hidden>
+        <a class="home-subitem" href="projects/boxman/boxman.html">Boxman</a>
+        <!-- 下面两个先占位：你做好对应页面后把 href 改成真实路径 -->
+        <a class="home-subitem" href="projects/bodily-images/bodily-images.html">Bodily Images</a>
+        <a class="home-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">Shadow of Shadows</a>
+      </div>
+
       <a class="home-item" href="archive.html">Archive</a>
     </nav>
 
-    <!-- 右上：两行（你想要更多行也可以继续加） -->
+    <!-- 右上：Info / Contact -->
     <nav class="home-right" aria-label="Info navigation">
       <a class="home-item" href="info.html">Info</a>
       <a class="home-item" href="contact.html">Contact</a>
@@ -28,10 +46,41 @@
 
     <!-- 中间大图：居中 -->
     <section class="home-hero" aria-label="Featured image">
-      <!-- 你把 src 改成真实存在的路径 -->
       <img class="home-hero-img" src="hero.jpg" alt="Featured work by Yuan Liu" />
     </section>
 
   </main>
+
+  <script>
+    (function () {
+      const btn = document.querySelector(".home-toggle");
+      const panel = document.getElementById("home-projects");
+      if (!btn || !panel) return;
+
+      btn.addEventListener("click", () => {
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!isOpen));
+        panel.hidden = isOpen;
+      });
+
+      // optional: click outside to close
+      document.addEventListener("click", (e) => {
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+        if (!isOpen) return;
+        if (btn.contains(e.target) || panel.contains(e.target)) return;
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+      });
+
+      // optional: ESC to close
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+        if (!isOpen) return;
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+      });
+    })();
+  </script>
 </body>
 </html>
