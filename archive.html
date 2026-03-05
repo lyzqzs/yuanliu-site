@@ -1,24 +1,69 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Archive — Yuan Liu</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Archive — Yuan Liu</title>
+
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
+
+<link rel="stylesheet" href="styles.css" />
 </head>
 
-<body class="page-archive">
+<body>
 
-  <nav class="top-nav">
-    <a href="index.html">home</a>
-  </nav>
+<main class="page page-archive">
 
-  <main class="center-list">
-    <a class="project-link" href="archive/not-really-pictures/not-really-pictures.html">Not Really Pictures</a>
-    <a class="project-link" href="archive/mountain-tree/mountain-tree.html">Mountain Tree</a>
-    <a class="project-link" href="archive/in-columbus/in-columbus.html">In Columbus</a>
-    <a class="project-link" href="archive/afterlives/afterlives.html">Afterlives</a>
-  </main>
+<nav class="archive-nav">
+
+<a class="archive-home" href="index.html">home</a>
+
+<button
+class="archive-toggle"
+type="button"
+aria-expanded="false"
+aria-controls="archive-list"
+>
+Archive
+</button>
+
+<div id="archive-list" class="archive-dropdown" hidden>
+
+<a href="#">Not Really Pictures</a>
+
+<a href="#">Mountain Tree</a>
+
+<a href="#">In Columbus</a>
+
+<a href="#">Afterlives</a>
+
+</div>
+
+</nav>
+
+</main>
+
+<script>
+
+(function(){
+
+const btn = document.querySelector(".archive-toggle")
+const panel = document.getElementById("archive-list")
+
+btn.addEventListener("click", () => {
+
+const open = btn.getAttribute("aria-expanded") === "true"
+
+btn.setAttribute("aria-expanded", !open)
+
+panel.hidden = open
+
+})
+
+})()
+
+</script>
 
 </body>
 </html>
