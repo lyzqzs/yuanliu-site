@@ -411,3 +411,57 @@ a:hover{
 .page.page-home .home-dropdown[hidden]{
   display: none !important;
 }
+/* =========================
+Archive page
+========================= */
+
+.page.page-archive{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding-top:120px;
+}
+
+.archive-nav{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:22px;
+}
+
+.archive-home{
+font-size:16px;
+text-decoration:none;
+color:black;
+}
+
+.archive-toggle{
+background:none;
+border:none;
+font-size:28px;
+font-family:inherit;
+cursor:pointer;
+}
+
+.archive-dropdown{
+display:flex;
+flex-direction:column;
+gap:18px;
+align-items:center;
+margin-top:10px;
+}
+
+.archive-dropdown a{
+text-decoration:none;
+color:#555;
+font-size:18px;
+}
+
+.archive-dropdown a:hover{
+color:black;
+}
+
+.archive-dropdown[hidden]{
+display:none;
+}
