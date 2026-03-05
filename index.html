@@ -13,10 +13,10 @@
 <body>
   <main class="page page-home">
 
-    <!-- 左上：名字 + Projects(展开) + Archive -->
     <nav class="home-left" aria-label="Home navigation">
       <a class="home-item home-name" href="index.html">Yuan Liu</a>
 
+      <!-- IMPORTANT: must be a BUTTON, not a link -->
       <button
         class="home-item home-toggle"
         type="button"
@@ -26,6 +26,7 @@
         Projects
       </button>
 
+      <!-- IMPORTANT: must have hidden by default -->
       <div id="home-projects" class="home-dropdown" hidden>
         <a class="home-subitem" href="projects/boxman/boxman.html">Boxman</a>
         <a class="home-subitem" href="projects/bodily-images/bodily-images.html">Bodily Images</a>
@@ -35,13 +36,11 @@
       <a class="home-item" href="archive.html">Archive</a>
     </nav>
 
-    <!-- 右上：Info / Contact -->
     <nav class="home-right" aria-label="Info navigation">
       <a class="home-item" href="info.html">Info</a>
       <a class="home-item" href="contact.html">Contact</a>
     </nav>
 
-    <!-- 中间大图：居中 -->
     <section class="home-hero" aria-label="Featured image">
       <img class="home-hero-img" src="hero.jpg" alt="Featured work by Yuan Liu" />
     </section>
@@ -60,7 +59,6 @@
         panel.hidden = isOpen;
       });
 
-      // click outside closes
       document.addEventListener("click", (e) => {
         const isOpen = btn.getAttribute("aria-expanded") === "true";
         if (!isOpen) return;
@@ -69,7 +67,6 @@
         panel.hidden = true;
       });
 
-      // ESC closes
       document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
         const isOpen = btn.getAttribute("aria-expanded") === "true";
