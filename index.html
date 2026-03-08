@@ -39,7 +39,6 @@
       max-width:1600px;
     }
 
-    /* desktop */
     .box-row{
       display:flex;
       justify-content:center;
@@ -109,44 +108,50 @@
       pointer-events:none;
     }
 
+    /* desktop dropdown */
     .box-sublist{
       width:100%;
-      margin-top:4px;
+      margin-top:6px;
       display:flex;
       flex-direction:column;
-      align-items:center;
-      gap:7px;
-      text-align:center;
+      align-items:flex-start;
+      gap:6px;
+      text-align:left;
+      padding-left:10px;
     }
 
     .box-sublist[hidden]{
       display:none !important;
     }
 
-    .box-sublist::before{
-      content:"|";
-      display:block;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1;
-      margin-bottom:0;
-      font-family:"Courier New", Courier, monospace;
-    }
-
     .box-subitem{
       color:var(--fg);
       text-decoration:none;
       font-size:12px;
-      line-height:1.2;
+      line-height:1.25;
       letter-spacing:0.01em;
       text-transform:none;
       transition:opacity 0.15s ease;
-      font-family:Arial, Helvetica, sans-serif;
+      font-family:"Courier New", Courier, monospace;
       white-space:nowrap;
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
     }
 
     .box-subitem:hover{
       opacity:0.5;
+    }
+
+    .tree-mark{
+      flex:0 0 auto;
+      color:var(--muted);
+      font-family:"Courier New", Courier, monospace;
+    }
+
+    .tree-label{
+      flex:1 1 auto;
+      color:var(--fg);
     }
 
     /* mobile: vertical stack + submenu to the right */
@@ -191,7 +196,6 @@
         line-height:1.03;
       }
 
-      /* 关键：手机端子菜单出现在右边 */
       .box-sublist{
         position:absolute;
         left:100%;
@@ -201,20 +205,21 @@
         width:max-content;
         align-items:flex-start;
         text-align:left;
-        gap:10px;
+        gap:8px;
         z-index:5;
         background:transparent;
-      }
-
-      .box-sublist::before{
-        content:"";
-        display:none;
+        padding-left:0;
       }
 
       .box-subitem{
         font-size:14px;
         white-space:normal;
-        display:block;
+        display:flex;
+        gap:6px;
+      }
+
+      .tree-mark{
+        font-size:14px;
       }
     }
   </style>
@@ -251,9 +256,15 @@
         </button>
 
         <div id="projects-list" class="box-sublist" hidden>
-          <a class="box-subitem" href="projects/boxman/boxman.html">boxman</a>
-          <a class="box-subitem" href="projects/bodily-images/bodily-images.html">bodily images</a>
-          <a class="box-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">shadow of shadows</a>
+          <a class="box-subitem" href="projects/boxman/boxman.html">
+            <span class="tree-mark">├</span><span class="tree-label">boxman</span>
+          </a>
+          <a class="box-subitem" href="projects/bodily-images/bodily-images.html">
+            <span class="tree-mark">├</span><span class="tree-label">bodily images</span>
+          </a>
+          <a class="box-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">
+            <span class="tree-mark">└</span><span class="tree-label">shadow of shadows</span>
+          </a>
         </div>
       </div>
 
@@ -273,10 +284,18 @@
         </button>
 
         <div id="archive-list" class="box-sublist" hidden>
-          <a class="box-subitem" href="archive/not-really-pictures/not-really-pictures.html">not really pictures</a>
-          <a class="box-subitem" href="archive/mountain-tree/mountain-tree.html">mountain tree</a>
-          <a class="box-subitem" href="archive/in-columbus/in-columbus.html">in columbus</a>
-          <a class="box-subitem" href="archive/afterlives/afterlives.html">afterlives</a>
+          <a class="box-subitem" href="archive/not-really-pictures/not-really-pictures.html">
+            <span class="tree-mark">├</span><span class="tree-label">not really pictures</span>
+          </a>
+          <a class="box-subitem" href="archive/mountain-tree/mountain-tree.html">
+            <span class="tree-mark">├</span><span class="tree-label">mountain tree</span>
+          </a>
+          <a class="box-subitem" href="archive/in-columbus/in-columbus.html">
+            <span class="tree-mark">├</span><span class="tree-label">in columbus</span>
+          </a>
+          <a class="box-subitem" href="archive/afterlives/afterlives.html">
+            <span class="tree-mark">└</span><span class="tree-label">afterlives</span>
+          </a>
         </div>
       </div>
 
