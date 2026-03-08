@@ -8,49 +8,293 @@
   <link rel="icon" href="/favicon.ico?v=3" sizes="any">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
 
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root{
+      --bg:#f3f3f1;
+      --fg:#111;
+      --muted:#5f5f5f;
+      --line:#111;
+      --box-top:#ecebe7;
+      --box-front:#f7f7f4;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:"Courier New", Courier, monospace;
+    }
+
+    body{
+      padding:40px 24px 60px;
+    }
+
+    .page-home{
+      max-width:1600px;
+      margin:0 auto;
+    }
+
+    /* ===== main row ===== */
+    .box-row{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:42px;
+      flex-wrap:nowrap;
+      margin-top:90px;
+    }
+
+    .box-wrap{
+      width:220px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+    }
+
+    /* ===== box ===== */
+    .ascii-box{
+      position:relative;
+      width:220px;
+      height:140px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      text-decoration:none;
+      color:var(--fg);
+      background:var(--box-front);
+      border:1.5px solid var(--line);
+      text-transform:uppercase;
+      letter-spacing:0.04em;
+      font-size:26px;
+      font-weight:700;
+      line-height:1.05;
+      text-align:center;
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease;
+      box-shadow:none;
+      cursor:pointer;
+    }
+
+    /* top opening flaps */
+    .ascii-box::before,
+    .ascii-box::after{
+      content:"";
+      position:absolute;
+      top:-22px;
+      height:26px;
+      width:48%;
+      background:var(--box-top);
+      border:1.5px solid var(--line);
+      border-bottom:none;
+      z-index:0;
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .ascii-box::before{
+      left:6px;
+      transform:skewX(-34deg);
+      transform-origin:bottom left;
+    }
+
+    .ascii-box::after{
+      right:6px;
+      transform:skewX(34deg);
+      transform-origin:bottom right;
+    }
+
+    .ascii-box > span{
+      position:relative;
+      z-index:2;
+      display:block;
+      max-width:90%;
+      word-break:break-word;
+    }
+
+    .ascii-box:hover,
+    .ascii-box.is-open{
+      background:var(--fg);
+      color:var(--bg);
+      transform:translateY(-2px);
+    }
+
+    .ascii-box:hover::before,
+    .ascii-box:hover::after,
+    .ascii-box.is-open::before,
+    .ascii-box.is-open::after{
+      background:#1d1d1d;
+    }
+
+    /* slightly smaller text for long labels */
+    .box-name{
+      font-size:24px;
+      text-transform:none;
+      letter-spacing:0.01em;
+    }
+
+    .box-small{
+      font-size:23px;
+    }
+
+    /* ===== dropdown ===== */
+    .box-sublist{
+      width:100%;
+      margin-top:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      text-align:center;
+    }
+
+    .box-sublist[hidden]{
+      display:none !important;
+    }
+
+    .box-subitem{
+      color:var(--fg);
+      text-decoration:none;
+      font-size:16px;
+      line-height:1.35;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      padding:2px 6px;
+      display:block;
+      transition:opacity 0.15s ease;
+    }
+
+    .box-subitem:hover{
+      opacity:0.55;
+    }
+
+    /* small connector feeling */
+    .box-sublist::before{
+      content:"|";
+      display:block;
+      margin-bottom:2px;
+      font-size:18px;
+      line-height:1;
+      color:var(--muted);
+    }
+
+    /* button reset */
+    button.ascii-box{
+      appearance:none;
+      -webkit-appearance:none;
+      border:1.5px solid var(--line);
+      outline:none;
+      font:inherit;
+    }
+
+    /* ===== mobile ===== */
+    @media (max-width: 1300px){
+      .box-row{
+        flex-wrap:wrap;
+        gap:54px 34px;
+      }
+    }
+
+    @media (max-width: 720px){
+      body{
+        padding:24px 16px 50px;
+      }
+
+      .box-row{
+        margin-top:56px;
+        gap:44px;
+      }
+
+      .box-wrap,
+      .ascii-box{
+        width:min(100%, 300px);
+      }
+
+      .ascii-box{
+        height:124px;
+        font-size:22px;
+      }
+
+      .box-name{
+        font-size:22px;
+      }
+
+      .box-small{
+        font-size:20px;
+      }
+
+      .box-subitem{
+        font-size:15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="page page-home">
+  <main class="page-home">
 
-    <nav class="home-left" aria-label="Home navigation">
-      <a class="home-item home-name" href="index.html">Yuan Liu</a>
+    <section class="box-row" aria-label="Homepage navigation">
 
-      <!-- Projects toggle -->
-      <button class="home-item home-toggle"
-              type="button"
-              data-target="projects-list"
-              aria-expanded="false">
-        Projects
-      </button>
-      <div id="projects-list" class="home-sublist is-collapsed" hidden>
-        <a class="home-subitem" href="projects/boxman/boxman.html">Boxman</a>
-        <a class="home-subitem" href="projects/bodily-images/bodily-images.html">Bodily Images</a>
-        <a class="home-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">Shadow of Shadows</a>
+      <!-- NAME -->
+      <div class="box-wrap">
+        <a class="ascii-box" href="index.html">
+          <span class="box-name">Yuan Liu</span>
+        </a>
       </div>
 
-      <!-- Archive toggle -->
-      <button class="home-item home-toggle"
-              type="button"
-              data-target="archive-list"
-              aria-expanded="false">
-        Archive
-      </button>
-      <div id="archive-list" class="home-sublist is-collapsed" hidden>
-        <a class="home-subitem" href="archive/not-really-pictures/not-really-pictures.html">Not Really Pictures</a>
-        <a class="home-subitem" href="archive/mountain-tree/mountain-tree.html">Mountain Tree</a>
-        <a class="home-subitem" href="archive/in-columbus/in-columbus.html">In Columbus</a>
-        <a class="home-subitem" href="archive/afterlives/afterlives.html">Afterlives</a>
+      <!-- PROJECTS -->
+      <div class="box-wrap">
+        <button class="ascii-box home-toggle"
+                type="button"
+                data-target="projects-list"
+                aria-expanded="false">
+          <span>Projects</span>
+        </button>
+
+        <div id="projects-list" class="box-sublist" hidden>
+          <a class="box-subitem" href="projects/boxman/boxman.html">Boxman</a>
+          <a class="box-subitem" href="projects/bodily-images/bodily-images.html">Bodily Images</a>
+          <a class="box-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">Shadow of Shadows</a>
+        </div>
       </div>
-    </nav>
 
-    <nav class="home-right" aria-label="Info navigation">
-      <a class="home-item" href="info.html">Info</a>
-      <a class="home-item" href="contact.html">Contact</a>
-    </nav>
+      <!-- ARCHIVE -->
+      <div class="box-wrap">
+        <button class="ascii-box home-toggle"
+                type="button"
+                data-target="archive-list"
+                aria-expanded="false">
+          <span>Archive</span>
+        </button>
 
-    <section class="home-hero" aria-label="Featured image">
-      <img class="home-hero-img" src="hero.jpg" alt="Featured work by Yuan Liu" />
+        <div id="archive-list" class="box-sublist" hidden>
+          <a class="box-subitem" href="archive/not-really-pictures/not-really-pictures.html">Not Really Pictures</a>
+          <a class="box-subitem" href="archive/mountain-tree/mountain-tree.html">Mountain Tree</a>
+          <a class="box-subitem" href="archive/in-columbus/in-columbus.html">In Columbus</a>
+          <a class="box-subitem" href="archive/afterlives/afterlives.html">Afterlives</a>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="box-wrap">
+        <a class="ascii-box box-small" href="info.html">
+          <span>Info</span>
+        </a>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="box-wrap">
+        <a class="ascii-box box-small" href="contact.html">
+          <span>Contact</span>
+        </a>
+      </div>
+
     </section>
 
   </main>
@@ -58,52 +302,57 @@
   <script>
     (function () {
       const toggles = document.querySelectorAll(".home-toggle");
-      const panels = ["projects-list", "archive-list"].map(id => document.getElementById(id)).filter(Boolean);
-
-      // ✅ 强制：初始加载全部收起（防止被别的代码/缓存影响）
-      panels.forEach(p => {
-        p.hidden = true;
-        p.classList.add("is-collapsed");
-      });
-      toggles.forEach(b => b.setAttribute("aria-expanded", "false"));
+      const panels = ["projects-list", "archive-list"]
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
 
       function closeAll(exceptId) {
         toggles.forEach(btn => {
           const id = btn.getAttribute("data-target");
           const panel = document.getElementById(id);
           if (!panel) return;
+
           if (id !== exceptId) {
             panel.hidden = true;
-            panel.classList.add("is-collapsed");
             btn.setAttribute("aria-expanded", "false");
+            btn.classList.remove("is-open");
           }
         });
       }
 
+      // initial closed state
+      panels.forEach(panel => {
+        panel.hidden = true;
+      });
       toggles.forEach(btn => {
-        btn.addEventListener("click", (e) => {
+        btn.setAttribute("aria-expanded", "false");
+        btn.classList.remove("is-open");
+      });
+
+      toggles.forEach(btn => {
+        btn.addEventListener("click", function (e) {
           e.stopPropagation();
+
           const id = btn.getAttribute("data-target");
           const panel = document.getElementById(id);
           if (!panel) return;
 
-          const willOpen = panel.hidden === true; // 当前关 -> 打开
+          const willOpen = panel.hidden === true;
+
           closeAll(id);
 
           panel.hidden = !willOpen;
-          panel.classList.toggle("is-collapsed", !willOpen);
           btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+          btn.classList.toggle("is-open", willOpen);
         });
       });
 
-      // 点击空白处收起
-      document.addEventListener("click", (e) => {
-        const insideLeftNav = e.target.closest(".home-left");
-        if (!insideLeftNav) closeAll(null);
+      document.addEventListener("click", function (e) {
+        const inside = e.target.closest(".box-wrap");
+        if (!inside) closeAll(null);
       });
 
-      // Esc 收起
-      document.addEventListener("keydown", (e) => {
+      document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") closeAll(null);
       });
     })();
