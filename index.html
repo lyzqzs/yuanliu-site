@@ -26,44 +26,53 @@
     }
 
     body{
-      padding:48px 24px 72px;
+      padding:56px 20px 72px;
     }
 
     .page-home{
-      max-width:1700px;
+      max-width:1600px;
       margin:0 auto;
     }
 
+    /* one centered row on desktop */
     .box-row{
       display:flex;
       justify-content:center;
       align-items:flex-start;
-      gap:40px;
+      gap:18px;
       flex-wrap:nowrap;
-      margin-top:72px;
+      margin-top:84px;
+      overflow-x:auto;
+      overflow-y:visible;
+      padding-bottom:8px;
+    }
+
+    .box-row::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .box-row::-webkit-scrollbar-thumb{
+      background:rgba(0,0,0,0.18);
     }
 
     .box-wrap{
-      width:240px;
+      flex:0 0 auto;
+      width:172px;
       display:flex;
       flex-direction:column;
       align-items:center;
     }
 
-    /* ===== ASCII BOX ===== */
     .ascii-box{
-      position:relative;
-      width:240px;
-      min-height:220px;
-      padding:28px 22px 24px;
+      display:block;
+      width:172px;
+      padding:0;
+      margin:0;
+      border:none;
       background:transparent;
       color:var(--fg);
       text-decoration:none;
-      border:none;
       cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       transition:opacity 0.15s ease, transform 0.15s ease;
       font:inherit;
     }
@@ -72,108 +81,33 @@
       appearance:none;
       -webkit-appearance:none;
       outline:none;
-      background:transparent;
     }
 
     .ascii-box:hover,
     .ascii-box.is-open{
-      opacity:0.62;
+      opacity:0.58;
       transform:translateY(-1px);
     }
 
-    .ascii-art{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      line-height:1;
+    .ascii-pre{
+      margin:0;
       white-space:pre;
+      font-family:"Courier New", Courier, monospace;
+      font-size:16px;
+      line-height:1.05;
+      letter-spacing:0;
+      text-align:left;
       user-select:none;
       pointer-events:none;
     }
 
-    .ascii-top{
-      font-size:34px;
-      letter-spacing:0;
-      margin-bottom:10px;
-    }
-
-    .ascii-mid{
-      display:flex;
-      align-items:stretch;
-      justify-content:center;
-      gap:10px;
-    }
-
-    .ascii-left,
-    .ascii-right{
-      font-size:44px;
-      line-height:1;
-      display:flex;
-      align-items:stretch;
-    }
-
-    .ascii-face{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      min-width:0;
-    }
-
-    .ascii-num{
-      font-size:24px;
-      line-height:1.1;
-      letter-spacing:0.02em;
-      margin-bottom:12px;
-      text-transform:uppercase;
-    }
-
-    .ascii-label{
-      font-size:34px;
-      line-height:1.05;
-      letter-spacing:0.03em;
-      text-transform:uppercase;
-      text-align:center;
-      word-break:break-word;
-    }
-
-    .ascii-bottom{
-      font-size:34px;
-      letter-spacing:0;
-      margin-top:10px;
-    }
-
-    /* narrower label cases */
-    .label-small .ascii-label{
-      font-size:32px;
-    }
-
-    .label-tiny .ascii-label{
-      font-size:28px;
-    }
-
-    .name-box .ascii-label{
-      text-transform:none;
-      letter-spacing:0.01em;
-      font-size:32px;
-    }
-
-    .name-box .ascii-num{
-      visibility:hidden;
-      height:24px;
-      margin-bottom:12px;
-    }
-
-    /* ===== dropdown ===== */
     .box-sublist{
       width:100%;
-      margin-top:8px;
+      margin-top:6px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:14px;
+      gap:10px;
       text-align:center;
     }
 
@@ -185,16 +119,16 @@
       content:"|";
       display:block;
       color:var(--muted);
-      font-size:24px;
+      font-size:18px;
       line-height:1;
-      margin-bottom:2px;
+      margin-bottom:0;
     }
 
     .box-subitem{
       color:var(--fg);
       text-decoration:none;
-      font-size:16px;
-      line-height:1.3;
+      font-size:14px;
+      line-height:1.25;
       letter-spacing:0.08em;
       text-transform:uppercase;
       transition:opacity 0.15s ease;
@@ -204,66 +138,31 @@
       opacity:0.5;
     }
 
-    @media (max-width: 1450px){
-      .box-row{
-        flex-wrap:wrap;
-        gap:28px 30px;
-      }
-    }
-
     @media (max-width: 900px){
       body{
-        padding:28px 16px 56px;
+        padding:28px 14px 56px;
       }
 
       .box-row{
-        margin-top:36px;
-        gap:18px;
+        justify-content:flex-start;
+        margin-top:44px;
+        gap:12px;
       }
 
       .box-wrap{
-        width:min(100%, 300px);
+        width:150px;
       }
 
       .ascii-box{
-        width:min(100%, 300px);
-        min-height:190px;
-        padding:22px 14px 18px;
+        width:150px;
       }
 
-      .ascii-top,
-      .ascii-bottom{
-        font-size:28px;
-      }
-
-      .ascii-left,
-      .ascii-right{
-        font-size:36px;
-      }
-
-      .ascii-num{
-        font-size:21px;
-        margin-bottom:10px;
-      }
-
-      .ascii-label{
-        font-size:28px;
-      }
-
-      .label-small .ascii-label{
-        font-size:26px;
-      }
-
-      .label-tiny .ascii-label{
-        font-size:23px;
-      }
-
-      .name-box .ascii-label{
-        font-size:27px;
+      .ascii-pre{
+        font-size:14px;
       }
 
       .box-subitem{
-        font-size:14px;
+        font-size:13px;
       }
     }
   </style>
@@ -273,43 +172,31 @@
 
     <section class="box-row" aria-label="Homepage navigation">
 
-      <!-- NAME -->
+      <!-- [00] YUAN LIU -->
       <div class="box-wrap">
-        <a class="ascii-box name-box" href="index.html" aria-label="Yuan Liu home">
-          <div class="ascii-art">
-            <div class="ascii-top"> ________ </div>
-            <div class="ascii-mid">
-              <div class="ascii-left">|</div>
-              <div class="ascii-face">
-                <div class="ascii-num">[00]</div>
-                <div class="ascii-label">Yuan Liu</div>
-              </div>
-              <div class="ascii-right">|</div>
-            </div>
-            <div class="ascii-bottom">|________|/</div>
-          </div>
+        <a class="ascii-box" href="index.html" aria-label="Yuan Liu home">
+<pre class="ascii-pre">  ________
+ /______ /|
+ | [00]  | |
+ |YUAN   | |
+ | LIU   |/
+</pre>
         </a>
       </div>
 
-      <!-- PROJECTS -->
+      <!-- [01] PROJECTS -->
       <div class="box-wrap">
-        <button class="ascii-box home-toggle label-small"
+        <button class="ascii-box home-toggle"
                 type="button"
                 data-target="projects-list"
                 aria-expanded="false"
                 aria-label="Toggle projects list">
-          <div class="ascii-art">
-            <div class="ascii-top"> ________ </div>
-            <div class="ascii-mid">
-              <div class="ascii-left">|</div>
-              <div class="ascii-face">
-                <div class="ascii-num">[01]</div>
-                <div class="ascii-label">Projects</div>
-              </div>
-              <div class="ascii-right">|</div>
-            </div>
-            <div class="ascii-bottom">|________|/</div>
-          </div>
+<pre class="ascii-pre">  ________
+ /______ /|
+ | [01]  | |
+ |PROJECTS| |
+ |________|/
+</pre>
         </button>
 
         <div id="projects-list" class="box-sublist" hidden>
@@ -319,25 +206,19 @@
         </div>
       </div>
 
-      <!-- ARCHIVE -->
+      <!-- [02] ARCHIVE -->
       <div class="box-wrap">
-        <button class="ascii-box home-toggle label-small"
+        <button class="ascii-box home-toggle"
                 type="button"
                 data-target="archive-list"
                 aria-expanded="false"
                 aria-label="Toggle archive list">
-          <div class="ascii-art">
-            <div class="ascii-top"> ________ </div>
-            <div class="ascii-mid">
-              <div class="ascii-left">|</div>
-              <div class="ascii-face">
-                <div class="ascii-num">[02]</div>
-                <div class="ascii-label">Archive</div>
-              </div>
-              <div class="ascii-right">|</div>
-            </div>
-            <div class="ascii-bottom">|________|/</div>
-          </div>
+<pre class="ascii-pre">  ________
+ /______ /|
+ | [02]  | |
+ |ARCHIVE| |
+ |________|/
+</pre>
         </button>
 
         <div id="archive-list" class="box-sublist" hidden>
@@ -348,39 +229,27 @@
         </div>
       </div>
 
-      <!-- INFO -->
+      <!-- [03] INFO -->
       <div class="box-wrap">
         <a class="ascii-box" href="info.html" aria-label="Info">
-          <div class="ascii-art">
-            <div class="ascii-top"> ________ </div>
-            <div class="ascii-mid">
-              <div class="ascii-left">|</div>
-              <div class="ascii-face">
-                <div class="ascii-num">[03]</div>
-                <div class="ascii-label">Info</div>
-              </div>
-              <div class="ascii-right">|</div>
-            </div>
-            <div class="ascii-bottom">|________|/</div>
-          </div>
+<pre class="ascii-pre">  ________
+ /______ /|
+ | [03]  | |
+ |  INFO  | |
+ |________|/
+</pre>
         </a>
       </div>
 
-      <!-- CONTACT -->
+      <!-- [04] CONTACT -->
       <div class="box-wrap">
-        <a class="ascii-box label-tiny" href="contact.html" aria-label="Contact">
-          <div class="ascii-art">
-            <div class="ascii-top"> ________ </div>
-            <div class="ascii-mid">
-              <div class="ascii-left">|</div>
-              <div class="ascii-face">
-                <div class="ascii-num">[04]</div>
-                <div class="ascii-label">Contact</div>
-              </div>
-              <div class="ascii-right">|</div>
-            </div>
-            <div class="ascii-bottom">|________|/</div>
-          </div>
+        <a class="ascii-box" href="contact.html" aria-label="Contact">
+<pre class="ascii-pre">  ________
+ /______ /|
+ | [04]  | |
+ |CONTACT | |
+ |________|/
+</pre>
         </a>
       </div>
 
