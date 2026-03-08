@@ -12,10 +12,7 @@
     :root{
       --bg:#f3f3f1;
       --fg:#111;
-      --muted:#5f5f5f;
-      --line:#111;
-      --box-top:#ecebe7;
-      --box-front:#f7f7f4;
+      --muted:#6b6b6b;
     }
 
     *{ box-sizing:border-box; }
@@ -29,129 +26,154 @@
     }
 
     body{
-      padding:40px 24px 60px;
+      padding:48px 24px 72px;
     }
 
     .page-home{
-      max-width:1600px;
+      max-width:1700px;
       margin:0 auto;
     }
 
-    /* ===== main row ===== */
     .box-row{
       display:flex;
       justify-content:center;
       align-items:flex-start;
-      gap:42px;
+      gap:40px;
       flex-wrap:nowrap;
-      margin-top:90px;
+      margin-top:72px;
     }
 
     .box-wrap{
-      width:220px;
+      width:240px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      position:relative;
     }
 
-    /* ===== box ===== */
+    /* ===== ASCII BOX ===== */
     .ascii-box{
       position:relative;
-      width:220px;
-      height:140px;
+      width:240px;
+      min-height:220px;
+      padding:28px 22px 24px;
+      background:transparent;
+      color:var(--fg);
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
-      text-decoration:none;
-      color:var(--fg);
-      background:var(--box-front);
-      border:1.5px solid var(--line);
-      text-transform:uppercase;
-      letter-spacing:0.04em;
-      font-size:26px;
-      font-weight:700;
-      line-height:1.05;
-      text-align:center;
-      transition:
-        transform 0.18s ease,
-        background 0.18s ease,
-        color 0.18s ease,
-        box-shadow 0.18s ease;
-      box-shadow:none;
-      cursor:pointer;
+      transition:opacity 0.15s ease, transform 0.15s ease;
+      font:inherit;
     }
 
-    /* top opening flaps */
-    .ascii-box::before,
-    .ascii-box::after{
-      content:"";
-      position:absolute;
-      top:-22px;
-      height:26px;
-      width:48%;
-      background:var(--box-top);
-      border:1.5px solid var(--line);
-      border-bottom:none;
-      z-index:0;
-      transition:
-        transform 0.18s ease,
-        background 0.18s ease;
-    }
-
-    .ascii-box::before{
-      left:6px;
-      transform:skewX(-34deg);
-      transform-origin:bottom left;
-    }
-
-    .ascii-box::after{
-      right:6px;
-      transform:skewX(34deg);
-      transform-origin:bottom right;
-    }
-
-    .ascii-box > span{
-      position:relative;
-      z-index:2;
-      display:block;
-      max-width:90%;
-      word-break:break-word;
+    button.ascii-box{
+      appearance:none;
+      -webkit-appearance:none;
+      outline:none;
+      background:transparent;
     }
 
     .ascii-box:hover,
     .ascii-box.is-open{
-      background:var(--fg);
-      color:var(--bg);
-      transform:translateY(-2px);
+      opacity:0.62;
+      transform:translateY(-1px);
     }
 
-    .ascii-box:hover::before,
-    .ascii-box:hover::after,
-    .ascii-box.is-open::before,
-    .ascii-box.is-open::after{
-      background:#1d1d1d;
+    .ascii-art{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      line-height:1;
+      white-space:pre;
+      user-select:none;
+      pointer-events:none;
     }
 
-    /* slightly smaller text for long labels */
-    .box-name{
+    .ascii-top{
+      font-size:34px;
+      letter-spacing:0;
+      margin-bottom:10px;
+    }
+
+    .ascii-mid{
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .ascii-left,
+    .ascii-right{
+      font-size:44px;
+      line-height:1;
+      display:flex;
+      align-items:stretch;
+    }
+
+    .ascii-face{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-width:0;
+    }
+
+    .ascii-num{
       font-size:24px;
+      line-height:1.1;
+      letter-spacing:0.02em;
+      margin-bottom:12px;
+      text-transform:uppercase;
+    }
+
+    .ascii-label{
+      font-size:34px;
+      line-height:1.05;
+      letter-spacing:0.03em;
+      text-transform:uppercase;
+      text-align:center;
+      word-break:break-word;
+    }
+
+    .ascii-bottom{
+      font-size:34px;
+      letter-spacing:0;
+      margin-top:10px;
+    }
+
+    /* narrower label cases */
+    .label-small .ascii-label{
+      font-size:32px;
+    }
+
+    .label-tiny .ascii-label{
+      font-size:28px;
+    }
+
+    .name-box .ascii-label{
       text-transform:none;
       letter-spacing:0.01em;
+      font-size:32px;
     }
 
-    .box-small{
-      font-size:23px;
+    .name-box .ascii-num{
+      visibility:hidden;
+      height:24px;
+      margin-bottom:12px;
     }
 
     /* ===== dropdown ===== */
     .box-sublist{
       width:100%;
-      margin-top:18px;
+      margin-top:8px;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      align-items:center;
+      gap:14px;
       text-align:center;
     }
 
@@ -159,79 +181,89 @@
       display:none !important;
     }
 
+    .box-sublist::before{
+      content:"|";
+      display:block;
+      color:var(--muted);
+      font-size:24px;
+      line-height:1;
+      margin-bottom:2px;
+    }
+
     .box-subitem{
       color:var(--fg);
       text-decoration:none;
       font-size:16px;
-      line-height:1.35;
-      letter-spacing:0.02em;
+      line-height:1.3;
+      letter-spacing:0.08em;
       text-transform:uppercase;
-      padding:2px 6px;
-      display:block;
       transition:opacity 0.15s ease;
     }
 
     .box-subitem:hover{
-      opacity:0.55;
+      opacity:0.5;
     }
 
-    /* small connector feeling */
-    .box-sublist::before{
-      content:"|";
-      display:block;
-      margin-bottom:2px;
-      font-size:18px;
-      line-height:1;
-      color:var(--muted);
-    }
-
-    /* button reset */
-    button.ascii-box{
-      appearance:none;
-      -webkit-appearance:none;
-      border:1.5px solid var(--line);
-      outline:none;
-      font:inherit;
-    }
-
-    /* ===== mobile ===== */
-    @media (max-width: 1300px){
+    @media (max-width: 1450px){
       .box-row{
         flex-wrap:wrap;
-        gap:54px 34px;
+        gap:28px 30px;
       }
     }
 
-    @media (max-width: 720px){
+    @media (max-width: 900px){
       body{
-        padding:24px 16px 50px;
+        padding:28px 16px 56px;
       }
 
       .box-row{
-        margin-top:56px;
-        gap:44px;
+        margin-top:36px;
+        gap:18px;
       }
 
-      .box-wrap,
-      .ascii-box{
+      .box-wrap{
         width:min(100%, 300px);
       }
 
       .ascii-box{
-        height:124px;
-        font-size:22px;
+        width:min(100%, 300px);
+        min-height:190px;
+        padding:22px 14px 18px;
       }
 
-      .box-name{
-        font-size:22px;
+      .ascii-top,
+      .ascii-bottom{
+        font-size:28px;
       }
 
-      .box-small{
-        font-size:20px;
+      .ascii-left,
+      .ascii-right{
+        font-size:36px;
+      }
+
+      .ascii-num{
+        font-size:21px;
+        margin-bottom:10px;
+      }
+
+      .ascii-label{
+        font-size:28px;
+      }
+
+      .label-small .ascii-label{
+        font-size:26px;
+      }
+
+      .label-tiny .ascii-label{
+        font-size:23px;
+      }
+
+      .name-box .ascii-label{
+        font-size:27px;
       }
 
       .box-subitem{
-        font-size:15px;
+        font-size:14px;
       }
     }
   </style>
@@ -243,18 +275,41 @@
 
       <!-- NAME -->
       <div class="box-wrap">
-        <a class="ascii-box" href="index.html">
-          <span class="box-name">Yuan Liu</span>
+        <a class="ascii-box name-box" href="index.html" aria-label="Yuan Liu home">
+          <div class="ascii-art">
+            <div class="ascii-top"> ________ </div>
+            <div class="ascii-mid">
+              <div class="ascii-left">|</div>
+              <div class="ascii-face">
+                <div class="ascii-num">[00]</div>
+                <div class="ascii-label">Yuan Liu</div>
+              </div>
+              <div class="ascii-right">|</div>
+            </div>
+            <div class="ascii-bottom">|________|/</div>
+          </div>
         </a>
       </div>
 
       <!-- PROJECTS -->
       <div class="box-wrap">
-        <button class="ascii-box home-toggle"
+        <button class="ascii-box home-toggle label-small"
                 type="button"
                 data-target="projects-list"
-                aria-expanded="false">
-          <span>Projects</span>
+                aria-expanded="false"
+                aria-label="Toggle projects list">
+          <div class="ascii-art">
+            <div class="ascii-top"> ________ </div>
+            <div class="ascii-mid">
+              <div class="ascii-left">|</div>
+              <div class="ascii-face">
+                <div class="ascii-num">[01]</div>
+                <div class="ascii-label">Projects</div>
+              </div>
+              <div class="ascii-right">|</div>
+            </div>
+            <div class="ascii-bottom">|________|/</div>
+          </div>
         </button>
 
         <div id="projects-list" class="box-sublist" hidden>
@@ -266,11 +321,23 @@
 
       <!-- ARCHIVE -->
       <div class="box-wrap">
-        <button class="ascii-box home-toggle"
+        <button class="ascii-box home-toggle label-small"
                 type="button"
                 data-target="archive-list"
-                aria-expanded="false">
-          <span>Archive</span>
+                aria-expanded="false"
+                aria-label="Toggle archive list">
+          <div class="ascii-art">
+            <div class="ascii-top"> ________ </div>
+            <div class="ascii-mid">
+              <div class="ascii-left">|</div>
+              <div class="ascii-face">
+                <div class="ascii-num">[02]</div>
+                <div class="ascii-label">Archive</div>
+              </div>
+              <div class="ascii-right">|</div>
+            </div>
+            <div class="ascii-bottom">|________|/</div>
+          </div>
         </button>
 
         <div id="archive-list" class="box-sublist" hidden>
@@ -283,15 +350,37 @@
 
       <!-- INFO -->
       <div class="box-wrap">
-        <a class="ascii-box box-small" href="info.html">
-          <span>Info</span>
+        <a class="ascii-box" href="info.html" aria-label="Info">
+          <div class="ascii-art">
+            <div class="ascii-top"> ________ </div>
+            <div class="ascii-mid">
+              <div class="ascii-left">|</div>
+              <div class="ascii-face">
+                <div class="ascii-num">[03]</div>
+                <div class="ascii-label">Info</div>
+              </div>
+              <div class="ascii-right">|</div>
+            </div>
+            <div class="ascii-bottom">|________|/</div>
+          </div>
         </a>
       </div>
 
       <!-- CONTACT -->
       <div class="box-wrap">
-        <a class="ascii-box box-small" href="contact.html">
-          <span>Contact</span>
+        <a class="ascii-box label-tiny" href="contact.html" aria-label="Contact">
+          <div class="ascii-art">
+            <div class="ascii-top"> ________ </div>
+            <div class="ascii-mid">
+              <div class="ascii-left">|</div>
+              <div class="ascii-face">
+                <div class="ascii-num">[04]</div>
+                <div class="ascii-label">Contact</div>
+              </div>
+              <div class="ascii-right">|</div>
+            </div>
+            <div class="ascii-bottom">|________|/</div>
+          </div>
         </a>
       </div>
 
@@ -320,10 +409,10 @@
         });
       }
 
-      // initial closed state
       panels.forEach(panel => {
         panel.hidden = true;
       });
+
       toggles.forEach(btn => {
         btn.setAttribute("aria-expanded", "false");
         btn.classList.remove("is-open");
@@ -338,7 +427,6 @@
           if (!panel) return;
 
           const willOpen = panel.hidden === true;
-
           closeAll(id);
 
           panel.hidden = !willOpen;
