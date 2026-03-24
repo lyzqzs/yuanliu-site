@@ -371,3 +371,63 @@ a:hover{
 .page.page-home .home-sublist.is-collapsed{
   display: none !important;
 }
+/* =========================
+   Boxman video teaser (right hint)
+   ========================= */
+
+/* 让 work-wrap 不再完全居中“收死” */
+.page-work .work-wrap{
+  max-width: 1200px;
+}
+
+/* 横向结构 */
+.page-work .work-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 主图缩一点，让右边有空间 */
+.page-work .work-figure{
+  flex: 0 0 auto;
+  width: 64%;
+}
+
+/* 右侧“露出的视频” */
+.page-work .video-teaser{
+  flex: 0 0 18%;
+  display: block;
+  text-decoration: none;
+
+  /* 关键：推出去一点，只露一部分 */
+  transform: translateX(38%);
+  opacity: 0.7;
+
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* hover 时稍微进来一点 */
+.page-work .video-teaser:hover{
+  transform: translateX(20%);
+  opacity: 1;
+}
+
+/* 视频裁切容器 */
+.page-work .video-teaser-inner{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #eee;
+}
+
+/* iframe 放大 + 裁切，让画面更“像碎片” */
+.page-work .video-teaser-inner iframe{
+  width: 220%;
+  height: 100%;
+  transform: translateX(-28%);
+  pointer-events: none;
+}
