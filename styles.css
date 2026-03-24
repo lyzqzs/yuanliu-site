@@ -169,7 +169,7 @@ a:hover{
 .page-work .work-wrap{
   min-height:100vh;
   width:100%;
-  max-width:1500px;
+  max-width:1400px;
   margin:0 auto;
   padding:0 20px;
   display:flex;
@@ -179,43 +179,36 @@ a:hover{
 }
 
 .page-work .work-stage{
-  width:100%;
-  overflow:hidden;
-  position:relative;
+  width:min(980px, 88vw);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  cursor:ew-resize;
+}
+
+.page-work .work-stage::-webkit-scrollbar{
+  display:none;
 }
 
 .page-work .work-track{
   display:flex;
-  width:200%;
+  gap:28px;
   align-items:center;
-  transition:transform 0.45s ease;
-  transform:translateX(-8%);
-}
-
-/* 切到视频时整个轨道左移 */
-.page-work .work-track.show-video{
-  transform:translateX(-50%);
+  width:max-content;
+  padding-right:40px;
 }
 
 .page-work .work-panel{
-  width:50%;
-  flex:0 0 50%;
+  flex:0 0 auto;
+  width:min(760px, 72vw);
+  scroll-snap-align:start;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:0 28px;
 }
 
-.page-work .image-panel{
-  justify-content:center;
-}
-
-.page-work .video-panel{
-  justify-content:center;
-  cursor:pointer;
-}
-
-/* image */
 .page-work .work-figure{
   margin:0;
   width:100%;
@@ -226,21 +219,23 @@ a:hover{
 
 .page-work .work-img{
   display:block;
-  width:min(760px, 52vw);
+  width:auto;
   height:auto;
+  max-width:100%;
   max-height:72vh;
 }
 
-/* video */
+/* 视频面板：外框宽度和图片面板一致，但视频保持16:9，不压坏图片 */
 .page-work .video-frame-wrap{
   width:100%;
   display:flex;
   justify-content:center;
+  align-items:center;
 }
 
 .page-work .video-frame{
   display:block;
-  width:min(760px, 52vw);
+  width:100%;
   aspect-ratio:16 / 9;
   border:0;
   background:#eee;
@@ -262,9 +257,9 @@ a:hover{
   color:rgba(0,0,0,0.65);
 }
 
-/* image hint */
+/* 图片点击提示 */
 .page-work .work-figure img{
-  cursor: url("cursor-man.png") 16 16, pointer;
+  cursor:url("cursor-man.png") 16 16, pointer;
 }
 
 .page-work .work-figure::after{
@@ -283,31 +278,27 @@ a:hover{
   opacity:1;
 }
 
-/* image / video switch */
-.page-work .work-nav-hint{
-  margin-top:14px;
-  display:flex;
-  gap:14px;
-  align-items:center;
-  justify-content:center;
-}
+@media (max-width: 900px){
+  .page-work .work-wrap{
+    padding:0 16px;
+  }
 
-.page-work .nav-hint-btn{
-  appearance:none;
-  border:0;
-  background:none;
-  padding:0;
-  font:inherit;
-  color:rgba(0,0,0,0.38);
-  cursor:pointer;
-}
+  .page-work .work-stage{
+    width:92vw;
+  }
 
-.page-work .nav-hint-btn:hover{
-  text-decoration:underline;
-}
+  .page-work .work-track{
+    gap:18px;
+    padding-right:24px;
+  }
 
-.page-work .nav-hint-btn.is-active{
-  color:rgba(0,0,0,0.9);
+  .page-work .work-panel{
+    width:86vw;
+  }
+
+  .page-work .work-img{
+    max-height:62vh;
+  }
 }
 
 /* =========================
