@@ -14,19 +14,48 @@
   </nav>
 
   <main class="work-wrap">
-    <figure class="work-figure">
-      <img
-        id="projectImage"
-        class="work-img"
-        src="boxman-01.JPG"
-        alt="There Was a Box Man"
-      />
-    </figure>
 
+    <!-- ⭐ 新增：横向结构 -->
+    <div class="work-row">
+
+      <!-- 原本的图片 -->
+      <figure class="work-figure">
+        <img
+          id="projectImage"
+          class="work-img"
+          src="boxman-01.JPG"
+          alt="There Was a Box Man"
+        />
+      </figure>
+
+      <!-- ⭐ 右侧露出的视频（点击跳 Vimeo） -->
+      <a 
+        class="video-teaser" 
+        href="https://vimeo.com/1169474932" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <div class="video-teaser-inner">
+          <iframe
+            src="https://player.vimeo.com/video/1169474932?background=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            tabindex="-1">
+          </iframe>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- caption 保持不动 -->
     <figcaption class="work-caption">
       <div class="work-title">There Was a Box Man</div>
-      <div class="work-meta">Jan 31 – Feb 7, 2026<br>California Institute of the Arts</div>
+      <div class="work-meta">
+        Jan 31 – Feb 7, 2026<br>
+        California Institute of the Arts
+      </div>
     </figcaption>
+
   </main>
 
   <script>
@@ -55,7 +84,6 @@
 
     img.addEventListener("click", () => show(index + 1));
 
-    // 可选：左右键切图（很顺手）
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") show(index + 1);
       if (e.key === "ArrowLeft") show(index - 1);
