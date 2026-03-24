@@ -9,37 +9,32 @@
 
 <body class="page-work">
 
-  <!-- top center "home" -->
   <nav class="top-nav">
     <a href="../../index.html">home</a>
   </nav>
 
   <main class="work-wrap">
-
-    <!-- one-image stage (click to next) -->
     <figure class="work-figure">
       <img
         id="workImage"
+        class="work-img"
         src="bodily-01.JPG"
         alt="Bodily Images documentation"
         loading="eager"
       />
     </figure>
 
-    <!-- caption under image -->
-  <div class="work-caption">
-  <div class="work-title">They Have No Names！</div>
-  <div class="work-meta">
-    July 5 – July 24, 2025<br/>
-    Three Shadows Photography Art Center, Beijing
-  </div>
-</div>
-
+    <div class="work-caption">
+      <div class="work-title">Bodily Images</div>
+      <div class="work-meta">
+        They Have No Names!<br>
+        July 5 – July 24, 2025<br>
+        Three Shadows Photography Art Center, Beijing
+      </div>
+    </div>
   </main>
 
   <script>
-    // ✅ 注意：文件名要和 GitHub 里一模一样（大小写也一样）
-    // 你之后把图片传到这个文件夹里，把数组改成你的真实文件名即可
     const images = [
       "bodily-01.JPG",
       "bodily-02.JPG",
@@ -48,7 +43,6 @@
       "bodily-05.JPG",
       "bodily-06.JPG",
       "bodily-07.JPG"
-    
     ];
 
     let idx = 0;
@@ -59,11 +53,8 @@
       imgEl.src = images[idx];
     }
 
-    // click image -> next
-    imgEl.style.cursor = "pointer";
     imgEl.addEventListener("click", () => show(idx + 1));
 
-    // optional: keyboard arrows
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") show(idx + 1);
       if (e.key === "ArrowLeft") show(idx - 1);
