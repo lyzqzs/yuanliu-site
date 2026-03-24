@@ -372,62 +372,174 @@ a:hover{
   display: none !important;
 }
 /* =========================
-   Boxman video teaser (right hint)
+   Boxman slide layout
    ========================= */
 
-/* 让 work-wrap 不再完全居中“收死” */
 .page-work .work-wrap{
-  max-width: 1200px;
-}
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
 
-/* 横向结构 */
-.page-work .work-row{
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  align-items: center;
+}
+
+.page-work .work-stage{
   width: 100%;
   overflow: hidden;
-}
-
-/* 主图缩一点，让右边有空间 */
-.page-work .work-figure{
-  flex: 0 0 auto;
-  width: 64%;
-}
-
-/* 右侧“露出的视频” */
-.page-work .video-teaser{
-  flex: 0 0 18%;
-  display: block;
-  text-decoration: none;
-
-  /* 关键：推出去一点，只露一部分 */
-  transform: translateX(38%);
-  opacity: 0.7;
-
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-/* hover 时稍微进来一点 */
-.page-work .video-teaser:hover{
-  transform: translateX(20%);
-  opacity: 1;
-}
-
-/* 视频裁切容器 */
-.page-work .video-teaser-inner{
   position: relative;
+}
+
+.page-work .work-track{
+  display: flex;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.45s ease;
+  align-items: center;
+}
+
+/* 默认先露出一点右边视频边缘 */
+.page-work .work-track{
+  transform: translateX(-6%);
+}
+
+.page-work .work-track.show-video{
+  transform: translateX(-50%);
+}
+
+.page-work .work-panel{
+  width: 50%;
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 36px;
+}
+
+.page-work .image-panel{
+  justify-content: center;
+}
+
+.page-work .video-panel{
+  justify-content: center;
+  cursor: pointer;
+}
+
+.page-work .work-figure{
+  margin: 0;
   width: 100%;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.page-work .work-img{
+  display: block;
+  width: min(760px, 54vw);
+  height: auto;
+  max-height: 72vh;
+}
+
+/* 让视频和图片差不多大 */
+.page-work .video-frame-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page-work .video-frame{
+  display: block;
+  width: min(760px, 54vw);
+  aspect-ratio: 16 / 9;
+  border: 0;
   background: #eee;
 }
 
-/* iframe 放大 + 裁切，让画面更“像碎片” */
-.page-work .video-teaser-inner iframe{
-  width: 220%;
-  height: 100%;
-  transform: translateX(-28%);
+/* caption */
+.page-work .work-caption{
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.page-work .work-title{
+  font-style: italic;
+}
+
+.page-work .work-meta{
+  color: rgba(0,0,0,0.65);
+}
+
+/* image hint */
+.page-work .work-figure::after{
+  content: "click image to view next";
+  position: absolute;
+  left: 0;
+  bottom: -22px;
+  font-size: 12px;
+  color: rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 160ms ease;
   pointer-events: none;
+}
+
+.page-work .work-figure:hover::after{
+  opacity: 1;
+}
+
+/* image / video switch */
+.page-work .work-nav-hint{
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-work .nav-hint-btn{
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: rgba(0,0,0,0.38);
+  cursor: pointer;
+}
+
+.page-work .nav-hint-btn:hover{
+  text-decoration: underline;
+}
+
+.page-work .nav-hint-btn.is-active{
+  color: rgba(0,0,0,0.9);
+}
+
+/* mobile */
+@media (max-width: 900px){
+  .page-work .work-track{
+    width: 200%;
+    transform: translateX(0);
+  }
+
+  .page-work .work-track.show-video{
+    transform: translateX(-50%);
+  }
+
+  .page-work .work-panel{
+    padding: 0 18px;
+  }
+
+  .page-work .work-img{
+    width: 88vw;
+    max-height: 62vh;
+  }
+
+  .page-work .video-frame{
+    width: 88vw;
+  }
 }
