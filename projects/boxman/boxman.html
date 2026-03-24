@@ -14,40 +14,40 @@
   </nav>
 
   <main class="work-wrap">
+    <div class="work-stage">
+      <div class="work-track" id="workTrack">
 
-    <!-- ⭐ 新增：横向结构 -->
-    <div class="work-row">
+        <section class="work-panel image-panel">
+          <figure class="work-figure">
+            <img
+              id="projectImage"
+              class="work-img"
+              src="boxman-01.JPG"
+              alt="There Was a Box Man"
+            />
+          </figure>
+        </section>
 
-      <!-- 原本的图片 -->
-      <figure class="work-figure">
-        <img
-          id="projectImage"
-          class="work-img"
-          src="boxman-01.JPG"
-          alt="There Was a Box Man"
-        />
-      </figure>
+        <section class="work-panel video-panel" id="videoPanel">
+          <div class="video-frame-wrap">
+            <iframe
+              src="https://player.vimeo.com/video/1169474932"
+              class="video-frame"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </section>
 
-      <!-- ⭐ 右侧露出的视频（点击跳 Vimeo） -->
-      <a 
-        class="video-teaser" 
-        href="https://vimeo.com/1169474932" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <div class="video-teaser-inner">
-          <iframe
-            src="https://player.vimeo.com/video/1169474932?background=1"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            tabindex="-1">
-          </iframe>
-        </div>
-      </a>
-
+      </div>
     </div>
 
-    <!-- caption 保持不动 -->
+    <div class="work-nav-hint">
+      <button id="toImage" class="nav-hint-btn is-active" type="button">image</button>
+      <button id="toVideo" class="nav-hint-btn" type="button">video</button>
+    </div>
+
     <figcaption class="work-caption">
       <div class="work-title">There Was a Box Man</div>
       <div class="work-meta">
@@ -55,7 +55,6 @@
         California Institute of the Arts
       </div>
     </figcaption>
-
   </main>
 
   <script>
@@ -76,17 +75,48 @@
 
     let index = 0;
     const img = document.getElementById("projectImage");
+    const track = document.getElementById("workTrack");
+    const toImage = document.getElementById("toImage");
+    const toVideo = document.getElementById("toVideo");
+    const videoPanel = document.getElementById("videoPanel");
 
-    function show(i){
+    function show(i) {
       index = (i + images.length) % images.length;
       img.src = images[index];
     }
 
+    function goImage() {
+      track.classList.remove("show-video");
+      toImage.classList.add("is-active");
+      toVideo.classList.remove("is-active");
+    }
+
+    function goVideo() {
+      track.classList.add("show-video");
+      toVideo.classList.add("is-active");
+      toImage.classList.remove("is-active");
+    }
+
     img.addEventListener("click", () => show(index + 1));
+    toImage.addEventListener("click", goImage);
+    toVideo.addEventListener("click", goVideo);
+    videoPanel.addEventListener("click", goVideo);
 
     window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") show(index + 1);
-      if (e.key === "ArrowLeft") show(index - 1);
+      if (e.key === "ArrowRight") {
+        if (track.classList.contains("show-video")) {
+          return;
+        }
+        goVideo();
+      }
+
+      if (e.key === "ArrowLeft") {
+        if (track.classList.contains("show-video")) {
+          goImage();
+        } else {
+          show(index - 1);
+        }
+      }
     });
   </script>
 
