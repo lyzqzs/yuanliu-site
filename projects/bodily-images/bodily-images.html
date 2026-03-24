@@ -3,71 +3,130 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bodily Images — Yuan Liu</title>
+  <title>There Was a Box Man — Yuan Liu</title>
   <link rel="stylesheet" href="../../styles.css" />
 </head>
 
 <body class="page-work">
 
-  <!-- top center "home" -->
   <nav class="top-nav">
     <a href="../../index.html">home</a>
   </nav>
 
   <main class="work-wrap">
+    <div class="work-stage">
+      <div class="work-track" id="workTrack">
 
-    <!-- one-image stage (click to next) -->
-    <figure class="work-figure">
-      <img
-        id="workImage"
-        src="bodily-01.JPG"
-        alt="Bodily Images documentation"
-        loading="eager"
-      />
-    </figure>
+        <!-- image panel -->
+        <section class="work-panel image-panel">
+          <figure class="work-figure">
+            <img
+              id="projectImage"
+              class="work-img"
+              src="boxman-01.JPG"
+              alt="There Was a Box Man"
+            />
+          </figure>
+        </section>
 
-    <!-- caption under image -->
-  <div class="work-caption">
-  <div class="work-title">They Have No Names！</div>
-  <div class="work-meta">
-    July 5 – July 24, 2025<br/>
-    Three Shadows Photography Art Center, Beijing
-  </div>
-</div>
+        <!-- video panel -->
+        <section class="work-panel video-panel" id="videoPanel">
+          <div class="video-frame-wrap">
+            <iframe
+              src="https://player.vimeo.com/video/1169474932"
+              class="video-frame"
+              frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </section>
 
+      </div>
+    </div>
+
+    <div class="work-nav-hint">
+      <button id="toImage" class="nav-hint-btn is-active" type="button">image</button>
+      <button id="toVideo" class="nav-hint-btn" type="button">video</button>
+    </div>
+
+    <figcaption class="work-caption">
+      <div class="work-title">There Was a Box Man</div>
+      <div class="work-meta">
+        Jan 31 – Feb 7, 2026<br>
+        California Institute of the Arts
+      </div>
+    </figcaption>
   </main>
 
   <script>
-    // ✅ 注意：文件名要和 GitHub 里一模一样（大小写也一样）
-    // 你之后把图片传到这个文件夹里，把数组改成你的真实文件名即可
     const images = [
-      "bodily-01.JPG",
-      "bodily-02.JPG",
-      "bodily-03.JPG",
-      "bodily-04.JPG",
-      "bodily-05.JPG",
-      "bodily-06.JPG",
-      "bodily-07.JPG"
-    
+      "boxman-01.JPG",
+      "boxman-02.JPG",
+      "boxman-03.JPG",
+      "boxman-04.JPG",
+      "boxman-05.JPG",
+      "boxman-06.JPG",
+      "boxman-07.JPG",
+      "boxman-08.JPG",
+      "boxman-09.JPG",
+      "boxman-10.JPG",
+      "boxman-11.JPG",
+      "boxman-12.JPG",
     ];
 
-    let idx = 0;
-    const imgEl = document.getElementById("workImage");
+    let index = 0;
+    const img = document.getElementById("projectImage");
+    const track = document.getElementById("workTrack");
+    const toImage = document.getElementById("toImage");
+    const toVideo = document.getElementById("toVideo");
 
     function show(i){
-      idx = (i + images.length) % images.length;
-      imgEl.src = images[idx];
+      index = (i + images.length) % images.length;
+      img.src = images[index];
     }
 
-    // click image -> next
-    imgEl.style.cursor = "pointer";
-    imgEl.addEventListener("click", () => show(idx + 1));
+    function goImage() {
+      track.classList.remove("show-video");
+      toImage.classList.add("is-active");
+      toVideo.classList.remove("is-active");
+    }
 
-    // optional: keyboard arrows
+    function goVideo() {
+      track.classList.add("show-video");
+      toVideo.classList.add("is-active");
+      toImage.classList.remove("is-active");
+    }
+
+    img.addEventListener("click", () => show(index + 1));
+
+    toImage.addEventListener("click", goImage);
+    toVideo.addEventListener("click", goVideo);
+
     window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") show(idx + 1);
-      if (e.key === "ArrowLeft") show(idx - 1);
+      if (e.key === "ArrowRight") {
+        if (track.classList.contains("show-video")) {
+          return;
+        }
+        goVideo();
+      }
+
+      if (e.key === "ArrowLeft") {
+        if (track.classList.contains("show-video")) {
+          goImage();
+        } else {
+          show(index - 1);
+        }
+      }
+
+      if (e.key === " " || e.key === "Enter") {
+        if (document.activeElement === toVideo) goVideo();
+        if (document.activeElement === toImage) goImage();
+      }
     });
+
+    // 点击视频区域时也切过去
+    document.getElementById("videoPanel").addEventListener("click", goVideo);
   </script>
 
 </body>
