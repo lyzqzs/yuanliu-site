@@ -1,5 +1,5 @@
 /* =========================
-   Yuan Liu — minimal system (clean)
+   Yuan Liu — minimal system
    ========================= */
 
 :root{
@@ -9,7 +9,9 @@
   --rule:#111;
 }
 
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
 
 /* =========================
    Global + Cursor
@@ -22,12 +24,9 @@ html,body{
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size:13px;
   line-height:1.5;
-
-  /* Little Man Cursor */
   cursor: url("cursor-man.png") 16 16, auto;
 }
 
-/* Keep pointer feel for links/buttons */
 a,
 button,
 [role="button"],
@@ -40,6 +39,7 @@ a{
   color:inherit;
   text-decoration:none;
 }
+
 a:hover{
   text-decoration:underline;
 }
@@ -48,15 +48,15 @@ a:hover{
    Top centered "home"
    ========================= */
 .top-nav{
-  position: fixed;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
 }
 
 /* =========================
-   Home (old layout - keep for other pages if you still use it)
+   Home (old layout)
    ========================= */
 .page{
   min-height:100vh;
@@ -107,18 +107,18 @@ a:hover{
 }
 
 /* =========================
-   Projects + Archive list (center-up)  (used by projects.html / archive.html pages)
+   Projects + Archive list
    ========================= */
 .center-list{
-  width: 100%;
-  max-width: 320px;
-  margin: 18vh auto 0;
-  text-align: center;
+  width:100%;
+  max-width:320px;
+  margin:18vh auto 0;
+  text-align:center;
 }
 
 .project-link{
   display:block;
-  margin: 0 0 14px 0;
+  margin:0 0 14px 0;
 }
 
 /* =========================
@@ -129,15 +129,24 @@ a:hover{
   justify-content:space-between;
   align-items:flex-start;
   gap:120px;
-  margin: 110px 120px 120px;
+  margin:110px 120px 120px;
 }
 
-.page-info .info-text{ max-width:260px; }
-.page-info .muted{ color:var(--muted); }
+.page-info .info-text{
+  max-width:260px;
+}
 
-.page-info .info-image{ margin:0; margin-left:auto; }
+.page-info .muted{
+  color:var(--muted);
+}
+
+.page-info .info-image{
+  margin:0;
+  margin-left:auto;
+}
+
 .page-info .info-image img{
-  width: 200px;
+  width:200px;
   height:auto;
   display:block;
 }
@@ -146,400 +155,338 @@ a:hover{
   .page-info .info-layout{
     flex-direction:column;
     gap:24px;
-    margin: 90px 24px 90px;
+    margin:90px 24px 90px;
   }
+
   .page-info .info-image img{
-    width: min(240px, 100%);
+    width:min(240px, 100%);
   }
 }
 
 /* =========================
-   Single-work page (Projects + Archive)
+   Single-work page
    ========================= */
 .page-work .work-wrap{
-  min-height: 100vh;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height:100vh;
+  width:100%;
+  max-width:1500px;
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
+.page-work .work-stage{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.page-work .work-track{
+  display:flex;
+  width:200%;
+  align-items:center;
+  transition:transform 0.45s ease;
+  transform:translateX(-8%);
+}
+
+/* 切到视频时整个轨道左移 */
+.page-work .work-track.show-video{
+  transform:translateX(-50%);
+}
+
+.page-work .work-panel{
+  width:50%;
+  flex:0 0 50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:0 28px;
+}
+
+.page-work .image-panel{
+  justify-content:center;
+}
+
+.page-work .video-panel{
+  justify-content:center;
+  cursor:pointer;
+}
+
+/* image */
 .page-work .work-figure{
-  margin: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
+  margin:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  position:relative;
 }
 
-.page-work .work-figure img{
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: min(780px, 86vw);
-  max-height: 70vh;
+.page-work .work-img{
+  display:block;
+  width:min(760px, 52vw);
+  height:auto;
+  max-height:72vh;
 }
 
+/* video */
+.page-work .video-frame-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.page-work .video-frame{
+  display:block;
+  width:min(760px, 52vw);
+  aspect-ratio:16 / 9;
+  border:0;
+  background:#eee;
+}
+
+/* caption */
 .page-work .work-caption{
-  margin-top: 14px;
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.35;
+  margin-top:18px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.35;
 }
 
 .page-work .work-title{
-  font-style: italic;
+  font-style:italic;
 }
 
 .page-work .work-meta{
-  color: rgba(0,0,0,0.65);
+  color:rgba(0,0,0,0.65);
 }
 
-/* ---- gallery hint for clickable image ---- */
+/* image hint */
 .page-work .work-figure img{
   cursor: url("cursor-man.png") 16 16, pointer;
 }
 
 .page-work .work-figure::after{
-  content: "click to view next";
-  position: absolute;
-  left: 0;
-  bottom: -22px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.35);
-  opacity: 0;
-  transition: opacity 160ms ease;
-  pointer-events: none;
+  content:"click image to view next";
+  position:absolute;
+  left:0;
+  bottom:-22px;
+  font-size:12px;
+  color:rgba(0,0,0,0.35);
+  opacity:0;
+  transition:opacity 160ms ease;
+  pointer-events:none;
 }
 
 .page-work .work-figure:hover::after{
-  opacity: 1;
+  opacity:1;
+}
+
+/* image / video switch */
+.page-work .work-nav-hint{
+  margin-top:14px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  justify-content:center;
+}
+
+.page-work .nav-hint-btn{
+  appearance:none;
+  border:0;
+  background:none;
+  padding:0;
+  font:inherit;
+  color:rgba(0,0,0,0.38);
+  cursor:pointer;
+}
+
+.page-work .nav-hint-btn:hover{
+  text-decoration:underline;
+}
+
+.page-work .nav-hint-btn.is-active{
+  color:rgba(0,0,0,0.9);
 }
 
 /* =========================
    Lightbox
    ========================= */
 .lightbox{
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.96);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.96);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
   cursor: url("cursor-man.png") 16 16, pointer;
 }
 
 .lightbox img{
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
+  max-width:90vw;
+  max-height:90vh;
+  object-fit:contain;
 }
 
-.lightbox.hidden{ display:none; }
+.lightbox.hidden{
+  display:none;
+}
 
 /* =========================
-   Home v2 (LULLADY-like layout)
-   Only applies to index: .page.page-home
+   Home v2
    ========================= */
-
 .page.page-home{
-  padding: 0;
-  display: block;
-  position: relative;
+  padding:0;
+  display:block;
+  position:relative;
 }
 
-/* 左上 / 右上固定角落 */
 .page.page-home .home-left,
 .page.page-home .home-right{
-  position: fixed;
-  top: 28px;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  position:fixed;
+  top:28px;
+  z-index:20;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .page.page-home .home-left{
-  left: 28px;
-  align-items: flex-start;
-  text-align: left;
+  left:28px;
+  align-items:flex-start;
+  text-align:left;
 }
 
 .page.page-home .home-right{
-  right: 28px;
-  align-items: flex-end;
-  text-align: right;
+  right:28px;
+  align-items:flex-end;
+  text-align:right;
 }
 
-/* 首页导航的大字 */
 .page.page-home .home-item{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 34px;
-  line-height: 1.08;
-  letter-spacing: 0.2px;
-  font-weight: 600;
-  text-decoration: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  color: inherit;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size:34px;
+  line-height:1.08;
+  letter-spacing:0.2px;
+  font-weight:600;
+  text-decoration:none;
+  background:none;
+  border:0;
+  padding:0;
+  margin:0;
+  color:inherit;
 }
 
-/* 让 button 看起来跟 link 一样 */
 .page.page-home .home-toggle{
-  text-align: left;
+  text-align:left;
 }
 
 .page.page-home .home-item:hover{
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
 
-/* 下拉列表（默认隐藏，点 Projects/Archive 才出现） */
 .page.page-home .home-sublist{
-  margin-top: 2px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  margin-top:2px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .page.page-home .home-subitem{
-  font-size: 26px;
-  line-height: 1.1;
-  font-weight: 500;
-  color: rgba(0,0,0,0.55);
-  text-decoration: none;
+  font-size:26px;
+  line-height:1.1;
+  font-weight:500;
+  color:rgba(0,0,0,0.55);
+  text-decoration:none;
 }
 
 .page.page-home .home-subitem:hover{
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
 
-/* 中间大图居中 */
 .page.page-home .home-hero{
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  place-items: center;
-  padding: 90px 28px 60px;
+  min-height:100vh;
+  width:100%;
+  display:grid;
+  place-items:center;
+  padding:90px 28px 60px;
 }
 
 .page.page-home .home-hero-img{
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: min(820px, 62vw);
-  max-height: 78vh;
-  object-fit: contain;
+  display:block;
+  width:auto;
+  height:auto;
+  max-width:min(820px, 62vw);
+  max-height:78vh;
+  object-fit:contain;
 }
 
-/* 手机适配 */
-@media (max-width: 720px){
-  .page.page-home .home-left,
-  .page.page-home .home-right{
-    top: 18px;
-  }
-  .page.page-home .home-left{ left: 18px; }
-  .page.page-home .home-right{ right: 18px; }
-
-  .page.page-home .home-item{
-    font-size: 30px;
-  }
-
-  .page.page-home .home-subitem{
-    font-size: 24px;
-  }
-
-  .page.page-home .home-hero{
-    padding: 74px 18px 40px;
-  }
-
-  .page.page-home .home-hero-img{
-    max-width: min(92vw, 820px);
-    max-height: 72vh;
-  }
-}
-/* Safety: if a panel is marked collapsed, force it hidden */
 .page.page-home .home-sublist.is-collapsed{
-  display: none !important;
+  display:none !important;
 }
+
 /* =========================
-   Boxman slide layout
+   Mobile
    ========================= */
-
-.page-work .work-wrap{
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-work .work-stage{
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.page-work .work-track{
-  display: flex;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.45s ease;
-  align-items: center;
-}
-
-/* 默认先露出一点右边视频边缘 */
-.page-work .work-track{
-  transform: translateX(-6%);
-}
-
-.page-work .work-track.show-video{
-  transform: translateX(-50%);
-}
-
-.page-work .work-panel{
-  width: 50%;
-  flex: 0 0 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 36px;
-}
-
-.page-work .image-panel{
-  justify-content: center;
-}
-
-.page-work .video-panel{
-  justify-content: center;
-  cursor: pointer;
-}
-
-.page-work .work-figure{
-  margin: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.page-work .work-img{
-  display: block;
-  width: min(760px, 54vw);
-  height: auto;
-  max-height: 72vh;
-}
-
-/* 让视频和图片差不多大 */
-.page-work .video-frame-wrap{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.page-work .video-frame{
-  display: block;
-  width: min(760px, 54vw);
-  aspect-ratio: 16 / 9;
-  border: 0;
-  background: #eee;
-}
-
-/* caption */
-.page-work .work-caption{
-  margin-top: 18px;
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.page-work .work-title{
-  font-style: italic;
-}
-
-.page-work .work-meta{
-  color: rgba(0,0,0,0.65);
-}
-
-/* image hint */
-.page-work .work-figure::after{
-  content: "click image to view next";
-  position: absolute;
-  left: 0;
-  bottom: -22px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.35);
-  opacity: 0;
-  transition: opacity 160ms ease;
-  pointer-events: none;
-}
-
-.page-work .work-figure:hover::after{
-  opacity: 1;
-}
-
-/* image / video switch */
-.page-work .work-nav-hint{
-  margin-top: 14px;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-work .nav-hint-btn{
-  appearance: none;
-  border: 0;
-  background: none;
-  padding: 0;
-  font: inherit;
-  color: rgba(0,0,0,0.38);
-  cursor: pointer;
-}
-
-.page-work .nav-hint-btn:hover{
-  text-decoration: underline;
-}
-
-.page-work .nav-hint-btn.is-active{
-  color: rgba(0,0,0,0.9);
-}
-
-/* mobile */
 @media (max-width: 900px){
+  .page-work .work-wrap{
+    padding:0 16px;
+  }
+
   .page-work .work-track{
-    width: 200%;
-    transform: translateX(0);
+    transform:translateX(0);
   }
 
   .page-work .work-track.show-video{
-    transform: translateX(-50%);
+    transform:translateX(-50%);
   }
 
   .page-work .work-panel{
-    padding: 0 18px;
+    padding:0 12px;
   }
 
   .page-work .work-img{
-    width: 88vw;
-    max-height: 62vh;
+    width:88vw;
+    max-height:62vh;
   }
 
   .page-work .video-frame{
-    width: 88vw;
+    width:88vw;
+  }
+}
+
+@media (max-width: 720px){
+  .page.page-home .home-left,
+  .page.page-home .home-right{
+    top:18px;
+  }
+
+  .page.page-home .home-left{
+    left:18px;
+  }
+
+  .page.page-home .home-right{
+    right:18px;
+  }
+
+  .page.page-home .home-item{
+    font-size:30px;
+  }
+
+  .page.page-home .home-subitem{
+    font-size:24px;
+  }
+
+  .page.page-home .home-hero{
+    padding:74px 18px 40px;
+  }
+
+  .page.page-home .home-hero-img{
+    max-width:min(92vw, 820px);
+    max-height:72vh;
   }
 }
