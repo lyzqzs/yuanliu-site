@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hidden Notes of Previous Owner — Yuan Liu</title>
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body class="page-work page-hidden-notes">
+
+  <nav class="top-nav">
+    <a href="../../index.html">home</a>
+  </nav>
+
+  <main class="work-wrap">
+    <div class="work-stage">
+      <div class="work-track">
+
+        <section class="work-panel image-panel">
+          <figure class="work-figure">
+            <img
+              id="projectImage"
+              class="work-img"
+              src="forgotten-flowers.jpg"
+              alt="Hidden Notes of Previous Owner"
+            />
+          </figure>
+        </section>
+
+        <section class="work-panel video-panel">
+          <div class="video-frame-wrap">
+            <video
+              class="video-frame"
+              src="lightboxweb.mp4"
+              controls
+              playsinline>
+            </video>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <figcaption class="work-caption">
+      <div class="work-title">Hidden Notes of Previous Owner</div>
+      <div class="work-meta">
+        2026<br>
+        transparency paper and lightbox with hand crank electric generator
+      </div>
+    </figcaption>
+  </main>
+
+  <script>
+    const images = [
+      "forgotten-flowers.jpg",
+      "hidden-room.jpg",
+      "rock-fountain.jpg"
+    ];
+
+    let index = 0;
+    const img = document.getElementById("projectImage");
+
+    function show(i) {
+      index = (i + images.length) % images.length;
+      img.src = images[index];
+    }
+
+    img.addEventListener("click", () => show(index + 1));
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") show(index + 1);
+      if (e.key === "ArrowLeft") show(index - 1);
+    });
+  </script>
+
+</body>
+</html>
