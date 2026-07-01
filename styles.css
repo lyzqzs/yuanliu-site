@@ -56,58 +56,7 @@ a:hover{
 }
 
 /* =========================
-   Home (old layout)
-   ========================= */
-.page{
-  min-height:100vh;
-  padding:56px 20px 40px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.top{
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-top:6vh;
-}
-
-.divider{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
-  margin:6px 0;
-}
-
-.hr{
-  display:block;
-  width:18px;
-  height:1px;
-  background:var(--rule);
-  margin:6px auto;
-}
-
-.tiny-man{
-  width:12px;
-  height:auto;
-  display:block;
-  opacity:0.85;
-}
-
-.bottom{
-  text-align:center;
-  color:var(--muted);
-  font-size:13px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-/* =========================
-   Projects + Archive list
+   Basic list pages
    ========================= */
 .center-list{
   width:100%;
@@ -122,7 +71,7 @@ a:hover{
 }
 
 /* =========================
-   Info page
+   Info page — terminal / archive
    ========================= */
 .page-info .info-layout{
   display:flex;
@@ -133,7 +82,17 @@ a:hover{
 }
 
 .page-info .info-text{
-  max-width:260px;
+  max-width:620px;
+}
+
+.page-info .info-pre{
+  margin:0;
+  white-space:pre-wrap;
+  font-family:"Courier New", Courier, monospace;
+  font-size:13px;
+  line-height:1.45;
+  letter-spacing:0;
+  color:var(--fg);
 }
 
 .page-info .muted{
@@ -143,6 +102,7 @@ a:hover{
 .page-info .info-image{
   margin:0;
   margin-left:auto;
+  flex:0 0 auto;
 }
 
 .page-info .info-image img{
@@ -151,20 +111,8 @@ a:hover{
   display:block;
 }
 
-@media (max-width: 900px){
-  .page-info .info-layout{
-    flex-direction:column;
-    gap:24px;
-    margin:90px 24px 90px;
-  }
-
-  .page-info .info-image img{
-    width:min(240px, 100%);
-  }
-}
-
 /* =========================
-   Single-work page (default for all project pages)
+   Single-work page
    ========================= */
 .page-work .work-wrap{
   min-height:100vh;
@@ -234,15 +182,7 @@ a:hover{
    Use: <body class="page-work page-boxman">
    ========================= */
 .page-boxman .work-wrap{
-  min-height:100vh;
-  width:100%;
   max-width:1400px;
-  margin:0 auto;
-  padding:0 20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
 }
 
 .page-boxman .work-stage{
@@ -276,23 +216,11 @@ a:hover{
   align-items:center;
 }
 
-.page-boxman .work-figure{
-  margin:0;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  position:relative;
-}
-
 .page-boxman .work-img{
-  display:block;
-  width:auto;
-  height:auto;
   max-width:100%;
   max-height:72vh;
 }
 
-/* 视频和图片同等级，但不强行改变图片比例 */
 .page-boxman .video-frame-wrap{
   width:100%;
   display:flex;
@@ -310,37 +238,10 @@ a:hover{
 
 .page-boxman .work-caption{
   margin-top:18px;
-  text-align:center;
-  font-size:13px;
-  line-height:1.35;
-}
-
-.page-boxman .work-title{
-  font-style:italic;
-}
-
-.page-boxman .work-meta{
-  color:rgba(0,0,0,0.65);
-}
-
-.page-boxman .work-figure img{
-  cursor:url("cursor-man.png") 16 16, pointer;
 }
 
 .page-boxman .work-figure::after{
   content:"click image to view next";
-  position:absolute;
-  left:0;
-  bottom:-22px;
-  font-size:12px;
-  color:rgba(0,0,0,0.35);
-  opacity:0;
-  transition:opacity 160ms ease;
-  pointer-events:none;
-}
-
-.page-boxman .work-figure:hover::after{
-  opacity:1;
 }
 
 /* =========================
@@ -368,104 +269,33 @@ a:hover{
 }
 
 /* =========================
-   Home v2
-   ========================= */
-.page.page-home{
-  padding:0;
-  display:block;
-  position:relative;
-}
-
-.page.page-home .home-left,
-.page.page-home .home-right{
-  position:fixed;
-  top:28px;
-  z-index:20;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.page.page-home .home-left{
-  left:28px;
-  align-items:flex-start;
-  text-align:left;
-}
-
-.page.page-home .home-right{
-  right:28px;
-  align-items:flex-end;
-  text-align:right;
-}
-
-.page.page-home .home-item{
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size:34px;
-  line-height:1.08;
-  letter-spacing:0.2px;
-  font-weight:600;
-  text-decoration:none;
-  background:none;
-  border:0;
-  padding:0;
-  margin:0;
-  color:inherit;
-}
-
-.page.page-home .home-toggle{
-  text-align:left;
-}
-
-.page.page-home .home-item:hover{
-  text-decoration:underline;
-  text-underline-offset:4px;
-}
-
-.page.page-home .home-sublist{
-  margin-top:2px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.page.page-home .home-subitem{
-  font-size:26px;
-  line-height:1.1;
-  font-weight:500;
-  color:rgba(0,0,0,0.55);
-  text-decoration:none;
-}
-
-.page.page-home .home-subitem:hover{
-  text-decoration:underline;
-  text-underline-offset:4px;
-}
-
-.page.page-home .home-hero{
-  min-height:100vh;
-  width:100%;
-  display:grid;
-  place-items:center;
-  padding:90px 28px 60px;
-}
-
-.page.page-home .home-hero-img{
-  display:block;
-  width:auto;
-  height:auto;
-  max-width:min(820px, 62vw);
-  max-height:78vh;
-  object-fit:contain;
-}
-
-.page.page-home .home-sublist.is-collapsed{
-  display:none !important;
-}
-
-/* =========================
    Mobile
    ========================= */
-@media (max-width: 900px){
+@media (max-width:900px){
+
+  .page-info .info-layout{
+    flex-direction:column-reverse;
+    gap:28px;
+    margin:90px 24px 90px;
+  }
+
+  .page-info .info-text{
+    max-width:100%;
+  }
+
+  .page-info .info-pre{
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .page-info .info-image{
+    margin-left:0;
+  }
+
+  .page-info .info-image img{
+    width:min(220px, 100%);
+  }
+
   .page-work .work-wrap{
     padding:0 16px;
   }
@@ -473,10 +303,6 @@ a:hover{
   .page-work .work-img{
     max-width:88vw;
     max-height:62vh;
-  }
-
-  .page-boxman .work-wrap{
-    padding:0 16px;
   }
 
   .page-boxman .work-stage{
@@ -494,37 +320,5 @@ a:hover{
 
   .page-boxman .work-img{
     max-height:62vh;
-  }
-}
-
-@media (max-width: 720px){
-  .page.page-home .home-left,
-  .page.page-home .home-right{
-    top:18px;
-  }
-
-  .page.page-home .home-left{
-    left:18px;
-  }
-
-  .page.page-home .home-right{
-    right:18px;
-  }
-
-  .page.page-home .home-item{
-    font-size:30px;
-  }
-
-  .page.page-home .home-subitem{
-    font-size:24px;
-  }
-
-  .page.page-home .home-hero{
-    padding:74px 18px 40px;
-  }
-
-  .page.page-home .home-hero-img{
-    max-width:min(92vw, 820px);
-    max-height:72vh;
   }
 }
