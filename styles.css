@@ -158,6 +158,7 @@ a:hover{
 .page-work .work-meta{
   color:var(--muted);
 }
+
 .page-work .work-figure img{
   cursor:url("cursor-man.png") 16 16, pointer;
 }
@@ -180,7 +181,6 @@ a:hover{
 
 /* =========================
    Boxman only
-   Use: <body class="page-work page-boxman">
    ========================= */
 .page-boxman .work-wrap{
   max-width:1400px;
@@ -246,7 +246,113 @@ a:hover{
 }
 
 /* =========================
-   Lightbox
+   People page
+   ========================= */
+.page-people{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--fg);
+}
+
+.people-nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:38px 0 28px;
+  text-align:center;
+  background:var(--bg);
+  font-family:"Courier New", Courier, monospace;
+  font-size:15px;
+}
+
+.people-wrap{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  gap:48px 56px;
+  padding:28px 34px 80px;
+  align-items:center;
+}
+
+.people-wrap img{
+  width:100%;
+  max-height:150px;
+  object-fit:contain;
+  display:block;
+  cursor:url("cursor-man.png") 16 16, pointer;
+  transition:opacity 0.2s ease;
+}
+
+.people-wrap img:hover{
+  opacity:0.65;
+}
+
+.people-wrap.is-blurred{
+  filter:blur(18px);
+  opacity:0.55;
+  pointer-events:none;
+}
+
+.people-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.62);
+  font-family:"Courier New", Courier, monospace;
+}
+
+.people-lightbox.is-open{
+  display:flex;
+}
+
+.lightbox-figure{
+  margin:0;
+  text-align:center;
+}
+
+.lightbox-figure img{
+  max-width:58vw;
+  max-height:72vh;
+  object-fit:contain;
+  display:block;
+}
+
+.lightbox-figure figcaption{
+  margin-top:12px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next{
+  position:fixed;
+  border:0;
+  background:transparent;
+  color:var(--fg);
+  font:inherit;
+  cursor:url("cursor-man.png") 16 16, pointer;
+}
+
+.lightbox-close{
+  top:42px;
+  right:34px;
+}
+
+.lightbox-prev{
+  left:34px;
+  top:50%;
+}
+
+.lightbox-next{
+  right:34px;
+  top:50%;
+}
+
+/* =========================
+   Old simple lightbox
    ========================= */
 .lightbox{
   position:fixed;
@@ -321,5 +427,20 @@ a:hover{
 
   .page-boxman .work-img{
     max-height:62vh;
+  }
+
+  .people-wrap{
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px 28px;
+    padding:20px 24px 70px;
+  }
+
+  .people-wrap img{
+    max-height:120px;
+  }
+
+  .lightbox-figure img{
+    max-width:82vw;
+    max-height:68vh;
   }
 }
