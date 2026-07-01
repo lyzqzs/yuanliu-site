@@ -145,18 +145,19 @@ a:hover{
 .page-work .work-caption{
   margin-top:14px;
   text-align:center;
+  font-family:"Courier New", Courier, monospace;
   font-size:13px;
-  line-height:1.35;
+  line-height:1.45;
+  color:var(--fg);
 }
 
 .page-work .work-title{
-  font-style:italic;
+  font-style:normal;
 }
 
 .page-work .work-meta{
-  color:rgba(0,0,0,0.65);
+  color:var(--muted);
 }
-
 .page-work .work-figure img{
   cursor:url("cursor-man.png") 16 16, pointer;
 }
