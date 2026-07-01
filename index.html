@@ -63,7 +63,6 @@
       color:var(--num);
       font-size:15px;
       line-height:1;
-      letter-spacing:0;
       font-family:"Courier New", Courier, monospace;
       font-weight:400;
     }
@@ -129,13 +128,12 @@
       font-size:12px;
       line-height:1.25;
       letter-spacing:0.01em;
-      text-transform:none;
-      transition:opacity 0.15s ease;
       font-family:"Courier New", Courier, monospace;
       white-space:nowrap;
       display:flex;
       align-items:flex-start;
       gap:6px;
+      transition:opacity 0.15s ease;
     }
 
     .box-subitem:hover{
@@ -154,7 +152,6 @@
     }
 
     @media (max-width:900px){
-
       body{
         min-height:auto;
         display:block;
@@ -206,7 +203,6 @@
         font-size:14px;
       }
     }
-
   </style>
 </head>
 
@@ -219,139 +215,143 @@
 <!-- 00 -->
 
 <div class="box-wrap">
+  <div class="box-num">00.</div>
 
-<div class="box-num">00.</div>
-
-<a class="ascii-box" href="index.html">
-
+  <a class="ascii-box" href="index.html">
 <pre class="ascii-pre">  ________
  /______ /|
  | yuan   | |
  |  liu   | |
  |________|/</pre>
-
-</a>
-
+  </a>
 </div>
 
 <!-- 01 -->
 
 <div class="box-wrap">
+  <div class="box-num">01.</div>
 
-<div class="box-num">01.</div>
-
-<button class="ascii-box home-toggle" type="button" data-target="projects-list">
-
+  <button class="ascii-box home-toggle" type="button" data-target="projects-list">
 <pre class="ascii-pre">  ________
  /______ /|
  |projects| |
  |        | |
  |________|/</pre>
+  </button>
 
-</button>
+  <div id="projects-list" class="box-sublist" hidden>
 
-<div id="projects-list" class="box-sublist" hidden>
+    <a class="box-subitem" href="projects/Hidden-Boxes-in-a-Garden/Hidden-Boxes-in-a-Garden.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">hidden boxes in a garden</span>
+    </a>
 
-<a class="box-subitem" href="projects/Hidden-Boxes-in-a-Garden/Hidden-Boxes-in-a-Garden.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">hidden boxes in a garden</span>
-</a>
+    <a class="box-subitem" href="projects/boxman/boxman.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">boxman</span>
+    </a>
 
-<a class="box-subitem" href="projects/boxman/boxman.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">boxman</span>
-</a>
+    <a class="box-subitem" href="projects/bodily-images/bodily-images.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">bodily images</span>
+    </a>
 
-<a class="box-subitem" href="projects/bodily-images/bodily-images.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">bodily images</span>
-</a>
+    <a class="box-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">
+      <span class="tree-mark">└</span>
+      <span class="tree-label">shadow of shadows</span>
+    </a>
 
-<a class="box-subitem" href="projects/shadow-of-shadows/shadow-of-shadows.html">
-<span class="tree-mark">└</span>
-<span class="tree-label">shadow of shadows</span>
-</a>
-
-</div>
-
+  </div>
 </div>
 
 <!-- 02 -->
 
 <div class="box-wrap">
+  <div class="box-num">02.</div>
 
-<div class="box-num">02.</div>
-
-<button class="ascii-box home-toggle" type="button" data-target="archive-list">
-
+  <button class="ascii-box home-toggle" type="button" data-target="people-list">
 <pre class="ascii-pre">  ________
  /______ /|
- |archive | |
+ | people | |
  |        | |
  |________|/</pre>
+  </button>
 
-</button>
+  <div id="people-list" class="box-sublist" hidden>
 
-<div id="archive-list" class="box-sublist" hidden>
+    <a class="box-subitem" href="people/portraits/portraits.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">portraits</span>
+    </a>
 
-<a class="box-subitem" href="archive/not-really-pictures/not-really-pictures.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">not really pictures</span>
-</a>
+    <a class="box-subitem" href="people/live/live.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">live</span>
+    </a>
 
-<a class="box-subitem" href="archive/mountain-tree/mountain-tree.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">mountain tree</span>
-</a>
+    <a class="box-subitem" href="people/fashion/fashion.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">fashion</span>
+    </a>
 
-<a class="box-subitem" href="archive/in-columbus/in-columbus.html">
-<span class="tree-mark">├</span>
-<span class="tree-label">in columbus</span>
-</a>
+    <a class="box-subitem" href="people/friends/friends.html">
+      <span class="tree-mark">└</span>
+      <span class="tree-label">friends</span>
+    </a>
 
-<a class="box-subitem" href="archive/afterlives/afterlives.html">
-<span class="tree-mark">└</span>
-<span class="tree-label">afterlives</span>
-</a>
-
-</div>
-
+  </div>
 </div>
 
 <!-- 03 -->
 
 <div class="box-wrap">
+  <div class="box-num">03.</div>
 
-<div class="box-num">03.</div>
-
-<a class="ascii-box" href="info.html">
-
+  <button class="ascii-box home-toggle" type="button" data-target="archive-list">
 <pre class="ascii-pre">  ________
  /______ /|
- |  info  | |
+ |archive | |
  |        | |
  |________|/</pre>
+  </button>
 
-</a>
+  <div id="archive-list" class="box-sublist" hidden>
 
+    <a class="box-subitem" href="archive/not-really-pictures/not-really-pictures.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">not really pictures</span>
+    </a>
+
+    <a class="box-subitem" href="archive/mountain-tree/mountain-tree.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">mountain tree</span>
+    </a>
+
+    <a class="box-subitem" href="archive/in-columbus/in-columbus.html">
+      <span class="tree-mark">├</span>
+      <span class="tree-label">in columbus</span>
+    </a>
+
+    <a class="box-subitem" href="archive/afterlives/afterlives.html">
+      <span class="tree-mark">└</span>
+      <span class="tree-label">afterlives</span>
+    </a>
+
+  </div>
 </div>
 
 <!-- 04 -->
 
 <div class="box-wrap">
+  <div class="box-num">04.</div>
 
-<div class="box-num">04.</div>
-
-<a class="ascii-box" href="contact.html">
-
+  <a class="ascii-box" href="info.html">
 <pre class="ascii-pre">  ________
  /______ /|
- |contact | |
+ |  info  | |
  |        | |
  |________|/</pre>
-
-</a>
-
+  </a>
 </div>
 
 </section>
@@ -359,55 +359,38 @@
 </main>
 
 <script>
-
 (function(){
 
-const toggles=document.querySelectorAll(".home-toggle");
+  const toggles = document.querySelectorAll(".home-toggle");
 
-function closeAll(except){
+  function closeAll(except){
+    toggles.forEach(btn=>{
+      const panel = document.getElementById(btn.dataset.target);
 
-toggles.forEach(btn=>{
+      if(btn.dataset.target !== except){
+        panel.hidden = true;
+        btn.classList.remove("is-open");
+      }
+    });
+  }
 
-const panel=document.getElementById(btn.dataset.target);
+  toggles.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const panel = document.getElementById(btn.dataset.target);
+      const open = panel.hidden;
 
-if(btn.dataset.target!==except){
+      closeAll(btn.dataset.target);
 
-panel.hidden=true;
+      panel.hidden = !open;
+      btn.classList.toggle("is-open", open);
+    });
+  });
 
-btn.classList.remove("is-open");
-
-}
-
-});
-
-}
-
-toggles.forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-const panel=document.getElementById(btn.dataset.target);
-
-const open=panel.hidden;
-
-closeAll(btn.dataset.target);
-
-panel.hidden=!open;
-
-btn.classList.toggle("is-open",open);
-
-});
-
-});
-
-document.addEventListener("click",(e)=>{
-
-if(!e.target.closest(".box-wrap")) closeAll();
-
-});
+  document.addEventListener("click",(e)=>{
+    if(!e.target.closest(".box-wrap")) closeAll();
+  });
 
 })();
-
 </script>
 
 </body>
