@@ -254,17 +254,6 @@ a:hover{
   color:var(--fg);
 }
 
-.people-nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-  padding:38px 0 28px;
-  text-align:center;
-  background:var(--bg);
-  font-family:"Courier New", Courier, monospace;
-  font-size:15px;
-}
-
 .people-wrap{
   display:grid;
   grid-template-columns:repeat(6, 1fr);
