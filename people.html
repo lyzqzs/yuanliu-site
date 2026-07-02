@@ -4,39 +4,49 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>People — Yuan Liu</title>
-  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 
 <body class="page-people">
 
   <nav class="top-nav">
-    <a href="../../index.html">home</a>
+    <a href="../index.html">home</a>
   </nav>
 
-  <main class="people-wrap" id="peopleGrid">
-    <img src="people-01.jpg" alt="People">
-    <img src="people-02.jpg" alt="People">
-    <img src="people-03.jpg" alt="People">
-    <img src="people-04.jpg" alt="People">
-    <img src="people-05.jpg" alt="People">
-    <img src="people-06.jpg" alt="People">
-    <img src="people-07.jpg" alt="People">
-    <img src="people-08.jpg" alt="People">
-    <img src="people-09.jpg" alt="People">
-    <img src="people-10.jpg" alt="People">
-    <img src="people-11.jpg" alt="People">
-    <img src="people-12.jpg" alt="People">
-  </main>
+  <main class="people-wrap" id="peopleGrid"></main>
 
   <div class="people-lightbox" id="lightbox">
     <img id="lightboxImage" src="" alt="People">
   </div>
 
   <script>
-    const images = Array.from(document.querySelectorAll(".people-wrap img"));
+    const totalImages = 188;
+
     const grid = document.getElementById("peopleGrid");
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
+
+    function fileName(n){
+      return n < 10 ? `people-0${n}.jpg` : `people-${n}.jpg`;
+    }
+
+    let imageNumbers = Array.from({ length: totalImages }, (_, i) => i + 1);
+
+    // fixed random order
+    imageNumbers = imageNumbers
+      .map(value => ({ value, sort: Math.sin(value * 999) }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(item => item.value);
+
+    const images = imageNumbers.map((num, i) => {
+      const img = document.createElement("img");
+      img.src = fileName(num);
+      img.alt = "People";
+      img.loading = "lazy";
+      img.dataset.index = i;
+      grid.appendChild(img);
+      return img;
+    });
 
     let index = 0;
 
