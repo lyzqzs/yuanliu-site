@@ -21,14 +21,16 @@
 
   <script>
     const totalImages = 188;
+    const targetRowHeight = 145;
+    const gap = 58;
 
     const grid = document.getElementById("peopleGrid");
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
 
- function fileName(n){
-    return `people-${n}.jpg`;
-}
+    function fileName(n){
+      return `people-${n}.jpg`;
+    }
 
     let imageNumbers = Array.from({ length: totalImages }, (_, i) => i + 1);
 
@@ -38,14 +40,85 @@
       .sort((a, b) => a.sort - b.sort)
       .map(item => item.value);
 
-    const images = imageNumbers.map((num, i) => {
-      const img = document.createElement("img");
-      img.src = fileName(num);
-      img.alt = "People";
-      img.loading = "lazy";
-      img.dataset.index = i;
-      grid.appendChild(img);
-      return img;
+    let images = [];
+
+    function makeImg(num, index){
+      return new Promise(resolve => {
+        const img = new Image();
+        img.src = fileName(num);
+        img.alt = "People";
+        img.loading = "lazy";
+        img.dataset.index = index;
+
+        img.onload = () => {
+          images[index] = img;
+          resolve({
+            img,
+            ratio: img.naturalWidth / img.naturalHeight
+          });
+        };
+
+        img.onerror = () => resolve(null);
+      });
+    }
+
+    function layout(items){
+      grid.innerHTML = "";
+
+      const gridWidth = grid.clientWidth;
+      let row = [];
+      let rowRatio = 0;
+
+      function addRow(rowItems, isLast){
+        const rowEl = document.createElement("div");
+        rowEl.className = "people-row";
+
+        const totalGap = gap * (rowItems.length - 1);
+        let rowHeight = (gridWidth - totalGap) / rowItems.reduce((s, item) => s + item.ratio, 0);
+
+        if(isLast){
+          rowHeight = targetRowHeight;
+          rowEl.classList.add("is-last");
+        }
+
+        rowItems.forEach(item => {
+          const img = item.img;
+          img.style.height = `${rowHeight}px`;
+          img.style.width = `${rowHeight * item.ratio}px`;
+          rowEl.appendChild(img);
+        });
+
+        grid.appendChild(rowEl);
+      }
+
+      items.forEach(item => {
+        row.push(item);
+        rowRatio += item.ratio;
+
+        const predictedWidth = rowRatio * targetRowHeight + gap * (row.length - 1);
+
+        if(predictedWidth >= gridWidth){
+          addRow(row, false);
+          row = [];
+          rowRatio = 0;
+        }
+      });
+
+      if(row.length) addRow(row, true);
+    }
+
+    Promise.all(imageNumbers.map((num, i) => makeImg(num, i))).then(results => {
+      const loaded = results.filter(Boolean);
+      layout(loaded);
+
+      images = loaded.map(item => item.img);
+
+      images.forEach((img, i) => {
+        img.dataset.index = i;
+        img.addEventListener("click", () => openLightbox(i));
+      });
+
+      window.addEventListener("resize", () => layout(loaded));
     });
 
     let index = 0;
@@ -67,10 +140,6 @@
       index = (i + images.length) % images.length;
       lightboxImage.src = images[index].src;
     }
-
-    images.forEach((img, i) => {
-      img.addEventListener("click", () => openLightbox(i));
-    });
 
     lightbox.addEventListener("click", closeLightbox);
 
