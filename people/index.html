@@ -183,10 +183,20 @@
         });
       });
 
-      window.addEventListener("resize", () => {
-        clearTimeout(window.peopleResizeTimer);
-        window.peopleResizeTimer = setTimeout(() => layout(loaded), 150);
-      });
+      let lastGridWidth = getGridWidth();
+
+window.addEventListener("resize", () => {
+  const newGridWidth = getGridWidth();
+
+  // 手机上地址栏弹出/收起只会改高度，不是真的改宽度
+  // 宽度变化很小时，不重新排版，避免跳回顶部
+  if(Math.abs(newGridWidth - lastGridWidth) < 20) return;
+
+  lastGridWidth = newGridWidth;
+
+  clearTimeout(window.peopleResizeTimer);
+  window.peopleResizeTimer = setTimeout(() => layout(loaded), 150);
+});
     });
 
     function openLightbox(i){
