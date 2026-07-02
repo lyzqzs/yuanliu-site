@@ -248,8 +248,9 @@ a:hover{
 }
 
 /* =========================
-   People page — Tyler-like loose grid
+   People page — justified gallery
    ========================= */
+
 .page-people{
   min-height:100vh;
   background:var(--bg);
@@ -258,27 +259,42 @@ a:hover{
 }
 
 .people-wrap{
+  width:100%;
   padding:110px 28px 80px;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-start;
-  gap:48px 58px;
   transition:filter .35s ease, opacity .35s ease;
 }
 
+.people-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:58px;
+  margin-bottom:48px;
+}
+
+.people-row.is-last{
+  justify-content:flex-start;
+}
+
 .people-wrap img{
-  height:145px;
-  width:auto;
-  max-width:none;
-  object-fit:contain;
   display:block;
+  object-fit:contain;
+  flex:0 0 auto;
   cursor:url("cursor-man.png") 16 16, pointer;
-  transition:transform .25s ease, opacity .25s ease;
+  opacity:0;
+  animation:peopleFade .35s ease forwards;
+  transition:opacity .25s ease, transform .25s ease;
 }
 
 .people-wrap img:hover{
-  transform:scale(1.035);
-  opacity:.72;
+  opacity:.68;
+  transform:scale(1.025);
+}
+
+@keyframes peopleFade{
+  to{
+    opacity:1;
+  }
 }
 
 .people-wrap.is-blurred{
@@ -319,7 +335,6 @@ a:hover{
 .people-lightbox.is-open img{
   transform:scale(1);
 }
-
 /* =========================
    Old simple lightbox
    ========================= */
@@ -402,11 +417,11 @@ a:hover{
 
  .people-wrap{
   padding:90px 22px 70px;
-  gap:34px 36px;
 }
 
-.people-wrap img{
-  height:110px;
+.people-row{
+  gap:34px;
+  margin-bottom:34px;
 }
 
 .people-lightbox img{
