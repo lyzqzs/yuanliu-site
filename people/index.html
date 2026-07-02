@@ -26,9 +26,9 @@
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
 
-    function fileName(n){
-      return n < 10 ? `people-0${n}.jpg` : `people-${n}.jpg`;
-    }
+ function fileName(n){
+    return `people-${n}.jpg`;
+}
 
     let imageNumbers = Array.from({ length: totalImages }, (_, i) => i + 1);
 
