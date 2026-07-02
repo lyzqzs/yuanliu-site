@@ -35,7 +35,6 @@
 
     let imageNumbers = Array.from({ length: totalImages }, (_, i) => i + 1);
 
-    // fixed random order
     imageNumbers = imageNumbers
       .map(value => ({ value, sort: Math.sin(value * 999) }))
       .sort((a, b) => a.sort - b.sort)
@@ -63,12 +62,21 @@
       });
     }
 
+    function getGridWidth(){
+      const style = getComputedStyle(grid);
+
+      return grid.clientWidth
+        - parseFloat(style.paddingLeft)
+        - parseFloat(style.paddingRight)
+        - 4;
+    }
+
     function layout(items){
       grid.innerHTML = "";
 
       gap = window.innerWidth <= 900 ? 28 : 48;
 
-      const gridWidth = grid.clientWidth - 4;
+      const gridWidth = getGridWidth();
 
       let row = [];
       let rowRatio = 0;
@@ -78,7 +86,9 @@
         rowEl.className = "people-row";
 
         const totalGap = gap * (rowItems.length - 1);
-        let rowHeight = (gridWidth - totalGap) / rowItems.reduce((s, item) => s + item.ratio, 0);
+        let rowHeight =
+          (gridWidth - totalGap) /
+          rowItems.reduce((s, item) => s + item.ratio, 0);
 
         if(isLast){
           rowHeight = targetRowHeight;
@@ -101,7 +111,9 @@
         row.push(item);
         rowRatio += item.ratio;
 
-        const predictedWidth = rowRatio * targetRowHeight + gap * (row.length - 1);
+        const predictedWidth =
+          rowRatio * targetRowHeight +
+          gap * (row.length - 1);
 
         if(predictedWidth >= gridWidth){
           addRow(row, false);
@@ -124,25 +136,28 @@
         img.addEventListener("click", () => openLightbox(i));
       });
 
-      window.addEventListener("resize", () => layout(loaded));
+      window.addEventListener("resize", () => {
+        clearTimeout(window.peopleResizeTimer);
+        window.peopleResizeTimer = setTimeout(() => layout(loaded), 150);
+      });
     });
 
     let index = 0;
 
-    function openLightbox(i) {
+    function openLightbox(i){
       index = i;
       lightboxImage.src = images[index].src;
       lightbox.classList.add("is-open");
       grid.classList.add("is-blurred");
     }
 
-    function closeLightbox() {
+    function closeLightbox(){
       lightbox.classList.remove("is-open");
       grid.classList.remove("is-blurred");
       lightboxImage.src = "";
     }
 
-    function show(i) {
+    function show(i){
       index = (i + images.length) % images.length;
       lightboxImage.src = images[index].src;
     }
@@ -150,11 +165,11 @@
     lightbox.addEventListener("click", closeLightbox);
 
     window.addEventListener("keydown", (e) => {
-      if (!lightbox.classList.contains("is-open")) return;
+      if(!lightbox.classList.contains("is-open")) return;
 
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") show(index + 1);
-      if (e.key === "ArrowLeft") show(index - 1);
+      if(e.key === "Escape") closeLightbox();
+      if(e.key === "ArrowRight") show(index + 1);
+      if(e.key === "ArrowLeft") show(index - 1);
     });
   </script>
 
