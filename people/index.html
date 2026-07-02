@@ -35,10 +35,22 @@
 
     let imageNumbers = Array.from({ length: totalImages }, (_, i) => i + 1);
 
-    imageNumbers = imageNumbers
-      .map(value => ({ value, sort: Math.sin(value * 999) }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(item => item.value);
+    function seededRandom(seed){
+  const x = Math.sin(seed * 9999) * 10000;
+  return x - Math.floor(x);
+}
+
+imageNumbers = imageNumbers
+  .map(value => ({
+    value,
+    group: value % 17,
+    random: seededRandom(value)
+  }))
+  .sort((a, b) => {
+    if(a.group !== b.group) return a.group - b.group;
+    return a.random - b.random;
+  })
+  .map(item => item.value);
 
     let images = [];
 
