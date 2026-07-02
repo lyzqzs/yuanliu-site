@@ -55,20 +55,7 @@ a:hover{
   z-index:1000;
 }
 
-/* people page needs a real header area */
-.page-people .top-nav{
-  position:fixed;
-  top:0;
-  left:0;
-  transform:none;
-  width:100%;
-  height:86px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--bg);
-  z-index:1000;
-}
+
 
 /* =========================
    Basic list pages
@@ -433,9 +420,7 @@ a:hover{
     max-height:62vh;
   }
 
-  .page-people .top-nav{
-    height:96px;
-  }
+
 
   .people-wrap{
     grid-template-columns:repeat(3, 1fr);
