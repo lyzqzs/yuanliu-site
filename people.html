@@ -9,9 +9,10 @@
 
 <body class="page-people">
 
-<nav class="top-nav">
+  <nav class="top-nav">
     <a href="../../index.html">home</a>
-</nav>
+  </nav>
+
   <main class="people-wrap" id="peopleGrid">
     <img src="people-01.jpg" alt="People">
     <img src="people-02.jpg" alt="People">
@@ -28,18 +29,7 @@
   </main>
 
   <div class="people-lightbox" id="lightbox">
-    <button class="lightbox-close" id="closeBtn">Close</button>
-    <button class="lightbox-prev" id="prevBtn">Prev</button>
-
-    <figure class="lightbox-figure">
-      <img id="lightboxImage" src="" alt="People">
-      <figcaption>
-        <div>People</div>
-        <div id="counter"></div>
-      </figcaption>
-    </figure>
-
-    <button class="lightbox-next" id="nextBtn">Next</button>
+    <img id="lightboxImage" src="" alt="People">
   </div>
 
   <script>
@@ -47,17 +37,12 @@
     const grid = document.getElementById("peopleGrid");
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
-    const counter = document.getElementById("counter");
-    const closeBtn = document.getElementById("closeBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
 
     let index = 0;
 
     function openLightbox(i) {
       index = i;
       lightboxImage.src = images[index].src;
-      counter.textContent = `${index + 1} of ${images.length}`;
       lightbox.classList.add("is-open");
       grid.classList.add("is-blurred");
     }
@@ -65,24 +50,23 @@
     function closeLightbox() {
       lightbox.classList.remove("is-open");
       grid.classList.remove("is-blurred");
+      lightboxImage.src = "";
     }
 
     function show(i) {
       index = (i + images.length) % images.length;
       lightboxImage.src = images[index].src;
-      counter.textContent = `${index + 1} of ${images.length}`;
     }
 
     images.forEach((img, i) => {
       img.addEventListener("click", () => openLightbox(i));
     });
 
-    closeBtn.addEventListener("click", closeLightbox);
-    nextBtn.addEventListener("click", () => show(index + 1));
-    prevBtn.addEventListener("click", () => show(index - 1));
+    lightbox.addEventListener("click", closeLightbox);
 
     window.addEventListener("keydown", (e) => {
       if (!lightbox.classList.contains("is-open")) return;
+
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowRight") show(index + 1);
       if (e.key === "ArrowLeft") show(index - 1);
