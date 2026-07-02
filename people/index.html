@@ -22,7 +22,8 @@
   <script>
     const totalImages = 188;
     const targetRowHeight = 145;
-    const gap = 58;
+
+    let gap = 48;
 
     const grid = document.getElementById("peopleGrid");
     const lightbox = document.getElementById("lightbox");
@@ -65,7 +66,10 @@
     function layout(items){
       grid.innerHTML = "";
 
-      const gridWidth = grid.clientWidth;
+      gap = window.innerWidth <= 900 ? 28 : 48;
+
+      const gridWidth = grid.clientWidth - 4;
+
       let row = [];
       let rowRatio = 0;
 
@@ -81,10 +85,12 @@
           rowEl.classList.add("is-last");
         }
 
+        rowHeight = Math.floor(rowHeight);
+
         rowItems.forEach(item => {
           const img = item.img;
           img.style.height = `${rowHeight}px`;
-          img.style.width = `${rowHeight * item.ratio}px`;
+          img.style.width = `${Math.floor(rowHeight * item.ratio)}px`;
           rowEl.appendChild(img);
         });
 
