@@ -143,10 +143,46 @@ imageNumbers = imageNumbers
 
       images = loaded.map(item => item.img);
 
-      images.forEach((img, i) => {
-        img.dataset.index = i;
-        img.addEventListener("click", () => openLightbox(i));
-      });
+      let touchStartX = 0;
+let touchStartY = 0;
+
+images.forEach((img, i) => {
+
+  img.dataset.index = i;
+
+  // 手机开始触摸
+  img.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  // 手机结束触摸
+  img.addEventListener("touchend", (e) => {
+
+    const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+
+    // 手指移动超过12px认为是在滚动，不打开图片
+    if(dx < 12 && dy < 12){
+      openLightbox(i);
+    }
+
+  });
+
+  // 桌面端点击
+  img.addEventListener("click", (e) => {
+
+    // 手机上忽略 click（touchend 已经处理）
+    if(window.matchMedia("(pointer: coarse)").matches){
+      e.preventDefault();
+      return;
+    }
+
+    openLightbox(i);
+
+  });
+
+});
 
       window.addEventListener("resize", () => {
         clearTimeout(window.peopleResizeTimer);
