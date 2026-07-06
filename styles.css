@@ -442,7 +442,13 @@ a:hover{
 .statement{
     width:58%;
 }
+.statement .zh{
+    color:#777;
+}
 
+.statement .en{
+    color:#111;
+}
 .statement{
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size:12px;
