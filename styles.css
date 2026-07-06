@@ -91,8 +91,8 @@ a:hover{
   margin:0;
   white-space:pre-wrap;
   font-family:"Courier New", Courier, monospace;
-  font-size:13px;
-  line-height:1.45;
+  font-size:12px;
+  line-height:1.4;
   letter-spacing:0;
   color:var(--fg);
 }
@@ -435,15 +435,18 @@ a:hover{
 }
 
 .statement-wrap{
-  max-width:760px;
-  margin:120px auto 100px;
-  padding:0 32px;
+  width:min(1180px,88vw);
+  margin:110px auto;
+  padding:0;
+}
+.statement{
+    width:58%;
 }
 
 .statement{
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size:15px;
-  line-height:1.8;
+  font-size:12px;
+  line-height:1.4;
   color:#111;
 }
 
