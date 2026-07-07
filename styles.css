@@ -442,20 +442,22 @@ a:hover{
 .statement{
     width:58%;
 }
+
+.statement{
+  font-family:"Courier New", Courier, monospace;
+  font-size:13px;
+  line-height:1.45;
+  color:#111;
+  white-space:normal;
+}
+
+.statement p{
+  margin:0 0 2.8em;
+}
 .statement .zh{
     color:#777;
 }
 
 .statement .en{
     color:#111;
-}
-.statement{
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size:12px;
-  line-height:1.4;
-  color:#111;
-}
-
-.statement p{
-  margin:0 0 2.8em;
 }
